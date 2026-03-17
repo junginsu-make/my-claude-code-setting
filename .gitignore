@@ -1,0 +1,23 @@
+# Private data - never commit
+.claude/.credentials.json
+.claude/history.jsonl
+.claude/sessions/
+.claude/cache/
+.claude/downloads/
+.claude/plugins/
+.claude/projects/
+.claude/plans/
+.claude/session-env/
+.claude/shell-snapshots/
+.claude/backups/
+.claude/mcp-needs-auth-cache.json
+.claude/agent-memory/
+.claude/agent-memory-local/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.log
