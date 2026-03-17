@@ -135,6 +135,15 @@
             "timeout": 5000
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/work-resume-detect.sh",
+            "timeout": 5000
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -207,6 +216,14 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/session-wrap-suggest.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/work-save-suggest.sh"
           }
         ]
       }
