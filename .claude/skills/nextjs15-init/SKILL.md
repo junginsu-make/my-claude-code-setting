@@ -1,6 +1,6 @@
 ---
 name: nextjs15-init
-description: Use when user wants to create a new Next.js 15 project (Todo/Blog/Dashboard/E-commerce/Custom domain) with App Router, ShadCN, Zustand, Tanstack Query, and modern Next.js stack
+description: 사용자가 App Router, ShadCN, Zustand, Tanstack Query 및 최신 Next.js 스택으로 새 Next.js 15 프로젝트(Todo/Blog/Dashboard/E-commerce/Custom 도메인)를 생성하려 할 때 사용하세요
 ---
 
 # NextJS 15 Init Skill
@@ -323,7 +323,7 @@ npm run dev
    - **E-commerce**: 상품 목록/상세, 장바구니, 주문, 카테고리
    - **공통**: TypeScript 타입 안전성, API 테스트, 배포 (Vercel)
 
-## Core Principles
+## 핵심 원칙
 
 - **App Router**: Next.js 15 App Router 기반 구조
 - **타입 안전성**: TypeScript Strict Mode
@@ -332,13 +332,13 @@ npm run dev
 - **코드 품질**: ESLint + Prettier
 - **폼 검증**: React Hook Form + Zod
 
-## Reference Files
+## 참조 파일
 
 [references/setup-guide.md](references/setup-guide.md) - 완전한 가이드
 - 기본 셋업 (도메인별 CRUD, API Routes, 컴포넌트)
 - 선택 옵션: ShadCN, Zustand, Tanstack Query, Drizzle ORM, Better Auth, Framer Motion
 
-## Notes
+## 참고사항
 
 - **대화형 스킬**: 사용자에게 도메인과 프리셋 선택을 통해 맞춤형 앱 구성
 - **도메인 지원**: Todo, Blog, Dashboard, E-commerce, Custom (사용자 정의)

@@ -17,7 +17,6 @@
       "Skill(*)",
       "ToolSearch(*)",
       "NotebookEdit(*)",
-      "WebFetch(*)",
       "WebSearch",
       "WebSearch(*)",
       "SendMessage(*)",
@@ -244,5 +243,29 @@
   "statusLine": {
     "type": "command",
     "command": "~/.claude/cc-chips-custom/engine.sh"
-  }
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "playground@claude-plugins-official": true,
+    "codex@openai-codex": true
+  },
+  "extraKnownMarketplaces": {
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true
 }

@@ -1,32 +1,32 @@
 ---
 name: card-news-generator-v2
-description: Create 600x600 Instagram-style card news series automatically with optional background images. User provides topic, colors, and optional images - Claude generates content and creates multiple cards with proper text wrapping.
+description: 배경 이미지 옵션이 포함된 600x600 인스타그램 스타일 카드 뉴스 시리즈를 자동 생성합니다. 사용자가 주제, 색상, 선택적 이미지를 제공하면 Claude가 콘텐츠를 생성하고 적절한 텍스트 래핑으로 여러 카드를 제작합니다.
 ---
 
-# Card News Generator v2 - Auto Mode (V2)
+# 카드 뉴스 생성기 v2 - 자동 모드 (V2)
 
-Creates beautiful 600x600 card news series for social media with **background image support**. User can provide topic, colors, and optional background images - Claude handles content generation and multi-card creation automatically.
+**배경 이미지 지원**이 포함된 소셜 미디어용 600x600 카드 뉴스 시리즈를 제작합니다. 사용자가 주제, 색상, 선택적 배경 이미지를 제공하면 Claude가 콘텐츠 생성 및 다중 카드 제작을 자동으로 처리합니다.
 
-## When to Use
+## 사용 시기
 
-Use this skill when user requests:
+사용자가 다음을 요청할 때 이 스킬을 사용합니다:
 - "카드 뉴스 만들어줘"
 - "주제로 카드 시리즈 만들어줘"
 - "인스타용 카드 생성해줘"
-- Any request for visual card content
+- 시각적 카드 콘텐츠에 대한 모든 요청
 
-## Core Workflow - AUTO MODE
+## 핵심 워크플로우 - 자동 모드
 
-This is the PRIMARY workflow when users request card news:
+사용자가 카드 뉴스를 요청할 때의 기본 워크플로우입니다:
 
-### Step 1: Get Topic, Colors, and Optional Background Images from User
+### 1단계: 사용자로부터 주제, 색상, 선택적 배경 이미지 수집
 
-Ask user for:
-- **Topic** (주제): What the card series is about
-- **Background RGB** (배경색): e.g., `245,243,238` (optional, default: beige)
-- **Background Images** (배경 이미지, 선택사항): Path to folder containing images
+사용자에게 다음을 질문합니다:
+- **주제**: 카드 시리즈의 내용
+- **배경색 RGB**: 예: `245,243,238` (선택사항, 기본값: 베이지)
+- **배경 이미지** (선택사항): 이미지가 있는 폴더 경로
 
-Example conversation (Solid Color):
+대화 예시 (단색 배경):
 ```
 Claude: 어떤 주제로 카드 뉴스를 만들까요?
 User: Z세대의 특징에 대해서
@@ -39,7 +39,7 @@ Claude: 배경색을 선택해주세요 (RGB 형식, 예: 245,243,238)
 User: 245,243,238
 ```
 
-Example conversation (With Background Images):
+대화 예시 (배경 이미지 사용):
 ```
 Claude: 어떤 주제로 카드 뉴스를 만들까요?
 User: 여행 팁 5가지
@@ -52,9 +52,9 @@ Claude: 오버레이 불투명도를 선택하세요 (0.0-1.0, 기본값 0.5)
 User: 0.6
 ```
 
-### Step 2: Generate Card Content
+### 2단계: 카드 콘텐츠 생성
 
-Create 5-7 cards about the topic. Format output as:
+주제에 대해 5-7장의 카드를 생성합니다. 출력 형식:
 
 ```
 1. [제목]
@@ -67,18 +67,18 @@ Create 5-7 cards about the topic. Format output as:
 [설명 2-3줄]
 ```
 
-**CRITICAL Content Guidelines:**
-- **Title**: Maximum 20 characters (including spaces)
-- **Content**: Maximum 60 characters (including spaces)
-- Keep it concise to fit 600x600 canvas
-- Use simple, impactful language
-- Each card should convey ONE key point
+**핵심 콘텐츠 가이드라인:**
+- **제목**: 최대 20자 (공백 포함)
+- **내용**: 최대 60자 (공백 포함)
+- 600x600 캔버스에 맞도록 간결하게 유지
+- 간단하고 임팩트 있는 언어 사용
+- 각 카드는 하나의 핵심 포인트만 전달
 
-### Step 3: Auto-Generate Cards
+### 3단계: 카드 자동 생성
 
-#### Option A: Solid Color Background
+#### 옵션 A: 단색 배경
 
-Use this command to create all cards with solid color background:
+단색 배경으로 모든 카드를 생성하는 명령어:
 
 ```bash
 python auto_generator.py \
@@ -101,9 +101,9 @@ python auto_generator.py \
 EOF
 ```
 
-#### Option B: Background Images (V2 Feature)
+#### 옵션 B: 배경 이미지 (V2 기능)
 
-Use this command to create cards with background images:
+배경 이미지로 카드를 생성하는 명령어:
 
 ```bash
 python auto_generator.py \
@@ -126,76 +126,76 @@ python auto_generator.py \
 EOF
 ```
 
-**Important Notes:**
-- Images in the folder must be sorted alphabetically/numerically (e.g., `01.jpg`, `02.jpg`, `03.jpg`)
-- Image count should match card count
-- If fewer images than cards, remaining cards will use solid color background
-- Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`, `.bmp`
-- Text automatically changes to white when using background images
+**중요 참고사항:**
+- 폴더 내 이미지는 알파벳/숫자 순으로 정렬되어야 합니다 (예: `01.jpg`, `02.jpg`, `03.jpg`)
+- 이미지 수는 카드 수와 일치해야 합니다
+- 카드보다 이미지가 적으면 나머지 카드는 단색 배경을 사용합니다
+- 지원 형식: `.jpg`, `.jpeg`, `.png`, `.webp`, `.bmp`
+- 배경 이미지 사용 시 텍스트 색상이 자동으로 흰색으로 변경됩니다
 
-The script will automatically:
-- Parse the numbered content
-- Load background images from the folder (in sorted order)
-- Apply dark overlay for better text visibility
-- Create individual cards with proper text wrapping
-- Save as `travel_01.png`, `travel_02.png`, etc.
+스크립트가 자동으로 수행하는 작업:
+- 번호가 매겨진 콘텐츠 파싱
+- 폴더에서 배경 이미지 로드 (정렬 순서)
+- 텍스트 가시성을 위한 어두운 오버레이 적용
+- 적절한 텍스트 래핑으로 개별 카드 생성
+- `travel_01.png`, `travel_02.png` 등으로 저장
 
-### Step 4: Provide Download Links
+### 4단계: 다운로드 링크 제공
 
-After generation, show user:
+생성 후 사용자에게 표시:
 ```
-✅ 카드 뉴스 5장이 생성되었습니다!
+카드 뉴스 5장이 생성되었습니다!
 
 [View card 1](computer:///mnt/user-data/outputs/zgen_01.png)
 [View card 2](computer:///mnt/user-data/outputs/zgen_02.png)
 ...
 ```
 
-## RGB to Hex Conversion
+## RGB-Hex 변환
 
-Always convert RGB to hex for scripts:
+스크립트용으로 항상 RGB를 hex로 변환합니다:
 
 ```python
-# RGB 245,243,238 → Hex #f5f3ee
+# RGB 245,243,238 -> Hex #f5f3ee
 hex_color = '#{:02x}{:02x}{:02x}'.format(245, 243, 238)
 ```
 
-## Recommended Colors (RGB Format)
+## 추천 색상 (RGB 형식)
 
-Show users these options:
-- Warm beige: `245,243,238` → `#f5f3ee`
-- Soft pink: `255,229,229` → `#ffe5e5`
-- Mint green: `224,244,241` → `#e0f4f1`
-- Lavender: `232,224,245` → `#e8e0f5`
-- Peach: `255,232,214` → `#ffe8d6`
-- Sky blue: `227,242,253` → `#e3f2fd`
+사용자에게 다음 옵션을 표시합니다:
+- 따뜻한 베이지: `245,243,238` -> `#f5f3ee`
+- 부드러운 핑크: `255,229,229` -> `#ffe5e5`
+- 민트 그린: `224,244,241` -> `#e0f4f1`
+- 라벤더: `232,224,245` -> `#e8e0f5`
+- 피치: `255,232,214` -> `#ffe8d6`
+- 스카이 블루: `227,242,253` -> `#e3f2fd`
 
-## Content Generation Best Practices
+## 콘텐츠 생성 모범 사례
 
-### Good Card Content Example
+### 좋은 카드 콘텐츠 예시
 ```
 1. 디지털 네이티브
 태어날 때부터
 디지털 환경에 익숙
 ```
-✓ Title: 8 characters
-✓ Content: 18 characters
-✓ Clear and concise
+- 제목: 8자
+- 내용: 18자
+- 명확하고 간결함
 
-### Bad Card Content Example
+### 나쁜 카드 콘텐츠 예시
 ```
 1. Z세대는 디지털 네이티브 세대입니다
 그들은 태어날 때부터 스마트폰과 인터넷을 사용하며 자랐기 때문에 디지털 기술에 매우 능숙합니다
 ```
-✗ Title too long (21 characters)
-✗ Content too long (60+ characters)
-✗ Will overflow the 600x600 canvas
+- 제목이 너무 김 (21자)
+- 내용이 너무 김 (60자 초과)
+- 600x600 캔버스를 넘침
 
-## Single Card Mode (Manual)
+## 단일 카드 모드 (수동)
 
-### Solid Color Background
+### 단색 배경
 
-For creating just one card with solid color:
+단일 카드를 단색으로 생성:
 
 ```bash
 python generate_card.py \
@@ -207,9 +207,9 @@ python generate_card.py \
   --output /mnt/user-data/outputs/single.png
 ```
 
-### With Background Image (V2 Feature)
+### 배경 이미지 사용 (V2 기능)
 
-For creating a card with background image:
+배경 이미지로 카드 생성:
 
 ```bash
 python generate_card.py \
@@ -221,85 +221,85 @@ python generate_card.py \
   --output /mnt/user-data/outputs/travel_01.png
 ```
 
-**Parameters:**
-- `--bg-image`: Path to background image file
-- `--overlay-opacity`: Opacity of dark overlay (0.0-1.0, default: 0.5)
-  - 0.0 = No overlay (original image)
-  - 0.5 = 50% dark overlay (default, good balance)
-  - 1.0 = Fully black (only for very bright images)
+**매개변수:**
+- `--bg-image`: 배경 이미지 파일 경로
+- `--overlay-opacity`: 어두운 오버레이 불투명도 (0.0-1.0, 기본값: 0.5)
+  - 0.0 = 오버레이 없음 (원본 이미지)
+  - 0.5 = 50% 어두운 오버레이 (기본값, 좋은 균형)
+  - 1.0 = 완전히 검정 (매우 밝은 이미지에만 사용)
 
-## Technical Details
+## 기술 세부사항
 
-### Canvas Specifications
-- Size: 600x600 pixels (Instagram-optimized)
-- Padding: 40px on all sides
-- Max text width: 520px (600 - 80)
-- Font sizes:
-  - Number badge: 60px
-  - Title: 48px (bold)
-  - Content: 28px (regular)
+### 캔버스 사양
+- 크기: 600x600 픽셀 (인스타그램 최적화)
+- 패딩: 사방 40px
+- 최대 텍스트 너비: 520px (600 - 80)
+- 폰트 크기:
+  - 번호 배지: 60px
+  - 제목: 48px (굵게)
+  - 내용: 28px (일반)
 
-### Background Image Processing (V2)
-- **Resize & Crop**: Images are automatically resized to 600x600px
-  - Maintains aspect ratio
-  - Center crop if aspect ratio differs
-  - Uses high-quality LANCZOS resampling
-- **Dark Overlay**: Applied to improve text visibility
-  - Default opacity: 0.5 (50% dark)
-  - Adjustable via `--overlay-opacity` (0.0-1.0)
-  - Higher values = darker overlay = better text contrast
-- **Text Color**: Automatically switches to white (#FFFFFF) when using background images
-- **Supported Formats**: JPG, JPEG, PNG, WebP, BMP
-- **Image Sorting**: Files loaded in alphabetical/numerical order
+### 배경 이미지 처리 (V2)
+- **리사이즈 & 크롭**: 이미지가 자동으로 600x600px로 리사이즈
+  - 종횡비 유지
+  - 종횡비가 다르면 중앙 크롭
+  - 고품질 LANCZOS 리샘플링 사용
+- **어두운 오버레이**: 텍스트 가시성 향상을 위해 적용
+  - 기본 불투명도: 0.5 (50% 어둡게)
+  - `--overlay-opacity` (0.0-1.0)로 조절 가능
+  - 높은 값 = 더 어두운 오버레이 = 더 나은 텍스트 대비
+- **텍스트 색상**: 배경 이미지 사용 시 자동으로 흰색(#FFFFFF)으로 전환
+- **지원 형식**: JPG, JPEG, PNG, WebP, BMP
+- **이미지 정렬**: 파일이 알파벳/숫자 순으로 로드
 
-### Text Wrapping
-- Automatic word wrapping at max width
-- Preserves manual line breaks
-- Centers all text horizontally
-- Vertical spacing optimized for readability
+### 텍스트 래핑
+- 최대 너비에서 자동 줄바꿈
+- 수동 줄바꿈 유지
+- 모든 텍스트 가로 중앙 정렬
+- 가독성을 위한 최적화된 세로 간격
 
-### File Naming Convention
-- Auto mode: `{base_filename}_{number:02d}.png`
-- Example: `card_01.png`, `card_02.png`, `card_03.png`
+### 파일 명명 규칙
+- 자동 모드: `{base_filename}_{number:02d}.png`
+- 예시: `card_01.png`, `card_02.png`, `card_03.png`
 
-## Error Handling
+## 에러 처리
 
-If text overflows:
-- Reduce title length
-- Shorten content
-- Use line breaks strategically
-- Regenerate with revised content
+텍스트가 넘치는 경우:
+- 제목 길이 줄이기
+- 내용 축약
+- 전략적으로 줄바꿈 사용
+- 수정된 내용으로 재생성
 
-## Example Workflows
+## 워크플로우 예시
 
-### Example 1: Solid Color Background
+### 예시 1: 단색 배경
 
-User request: "Z세대에 대한 카드 뉴스 5장 만들어줘, 핑크색으로"
+사용자 요청: "Z세대에 대한 카드 뉴스 5장 만들어줘, 핑크색으로"
 
-Claude response:
-1. Confirm: "Z세대 특징에 대한 카드 5장을 핑크 배경(255,229,229)으로 만들겠습니다."
-2. Generate 5 cards content (keeping text concise)
-3. Run auto_generator.py with heredoc
-4. Provide download links to all 5 cards
+Claude 응답:
+1. 확인: "Z세대 특징에 대한 카드 5장을 핑크 배경(255,229,229)으로 만들겠습니다."
+2. 5장의 카드 콘텐츠 생성 (텍스트 간결하게 유지)
+3. heredoc으로 auto_generator.py 실행
+4. 5장 모두에 대한 다운로드 링크 제공
 
-Total time: ~30 seconds for 5-card series
+총 소요 시간: 5장 카드 시리즈에 약 30초
 
-### Example 2: Background Images (V2)
+### 예시 2: 배경 이미지 (V2)
 
-User request: "여행 팁 카드 뉴스 만들어줘, 배경은 /Users/me/travel-photos 폴더에 있는 이미지 사용"
+사용자 요청: "여행 팁 카드 뉴스 만들어줘, 배경은 /Users/me/travel-photos 폴더에 있는 이미지 사용"
 
-Claude response:
-1. Confirm: "여행 팁 카드 뉴스를 만들겠습니다. /Users/me/travel-photos 폴더의 이미지를 배경으로 사용합니다."
-2. Ask: "오버레이 불투명도를 선택하세요 (0.0-1.0, 기본값 0.5). 높을수록 텍스트가 더 잘 보입니다."
+Claude 응답:
+1. 확인: "여행 팁 카드 뉴스를 만들겠습니다. /Users/me/travel-photos 폴더의 이미지를 배경으로 사용합니다."
+2. 질문: "오버레이 불투명도를 선택하세요 (0.0-1.0, 기본값 0.5). 높을수록 텍스트가 더 잘 보입니다."
 3. User: "0.6"
-4. Generate 5 cards content (keeping text concise)
-5. Run auto_generator.py with --image-folder and --overlay-opacity
-6. Provide download links showing cards with background images
+4. 5장의 카드 콘텐츠 생성 (텍스트 간결하게 유지)
+5. --image-folder 및 --overlay-opacity로 auto_generator.py 실행
+6. 배경 이미지가 적용된 카드의 다운로드 링크 제공
 
-**Preparation tips:**
-- Rename images in order: `01.jpg`, `02.jpg`, `03.jpg`, `04.jpg`, `05.jpg`
-- Ensure image count matches card count
-- Use high-quality images (at least 600x600px recommended)
-- Test with different overlay opacity values for best results
+**준비 팁:**
+- 이미지를 순서대로 이름 변경: `01.jpg`, `02.jpg`, `03.jpg`, `04.jpg`, `05.jpg`
+- 이미지 수가 카드 수와 일치하는지 확인
+- 고품질 이미지 사용 (최소 600x600px 권장)
+- 최상의 결과를 위해 다양한 오버레이 불투명도 값으로 테스트
 
-Total time: ~45 seconds for 5-card series with images
+총 소요 시간: 이미지 포함 5장 카드 시리즈에 약 45초

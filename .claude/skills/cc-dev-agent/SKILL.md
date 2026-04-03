@@ -3,9 +3,9 @@ name: cc-dev-agent
 description: "Claude Code 개발 워크플로우 최적화. Context Engineering, Sub-agents, TDD, 개발 후 검증 워크플로우 제공. 트리거: CC 프로젝트 시작, CLAUDE.md/spec.md 작성, /handoff /verify /commit-push-pr, sub-agent/Explore, Agent Teams 병렬 개발 요청 시."
 ---
 
-# Claude Code Agent
+# Claude Code 에이전트
 
-Claude Code를 활용한 Spec-Driven 개발 워크플로우 및 Context Engineering 가이드.
+Claude Code를 활용한 스펙 기반 개발 워크플로우 및 컨텍스트 엔지니어링 가이드.
 
 ## 핵심 원칙
 
@@ -40,7 +40,7 @@ Claude Code를 활용한 Spec-Driven 개발 워크플로우 및 Context Engineer
 
 ## 개발 완료 후 워크플로우 (Boris 방식)
 
-> "Give Claude a way to verify its work. If Claude has that feedback loop, it will 2-3x the quality."
+> "Claude에게 작업을 검증할 수 있는 방법을 주세요. 그 피드백 루프가 있으면 품질이 2-3배 향상됩니다."
 
 ### 핵심 플로우
 

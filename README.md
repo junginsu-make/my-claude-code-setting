@@ -18,9 +18,20 @@ bash install.sh
 | Agents (서브에이전트) | 11개 | Claude Forge |
 | Rules (핵심 규칙) | 9개 | Claude Forge |
 | Commands (슬래시 명령어) | 41개 | Claude Forge + 커스텀 |
-| Skills (스킬) | 39개 | Claude Forge + projeck-skills + my-skills + Anthropic 공식 |
-| Hooks (자동화 훅) | 15개 | Claude Forge |
+| Skills (스킬) | 40개 | Claude Forge + projeck-skills + my-skills + Anthropic 공식 |
+| Hooks (자동화 훅) | 18개 | Claude Forge |
+| Plugins (공식 플러그인) | 13개 | Anthropic 공식 + OpenAI Codex |
 | MCP 서버 | 1개 | context7 (실시간 라이브러리 문서) |
+
+### 플러그인 목록 (13개)
+
+**Anthropic 공식 (12개)**
+- superpowers, frontend-design, context7, code-review, playwright
+- feature-dev, typescript-lsp, claude-md-management, commit-commands
+- skill-creator, claude-code-setup, playground
+
+**외부 마켓플레이스 (1개)**
+- codex (OpenAI) — Codex CLI 연동
 
 ### 스킬 출처 상세
 
@@ -32,11 +43,12 @@ bash install.sh
 **projeck-skills (1개)** — 프로젝트 기획 프레임워크
 - project-system: 21개 질문 기반 기획 → PRD/기술설계서/DB스키마 자동 생성
 
-**my-skills (8개)** — 실용 도구
+**my-skills (9개)** — 실용 도구
 - nextjs15-init, flutter-init, prompt-enhancer, landing-page-guide
 - card-news-generator-v2, codex-claude-loop, meta-prompt-generator, code-changelog
+- ai-agent-skills (Synapse AI 에이전트 라이프사이클 관리)
 
-**Anthropic 공식 (14개)** — 문서/디자인/개발
+**Anthropic 공식 (15개)** — 문서/디자인/개발
 - claude-api, frontend-design, webapp-testing, web-artifacts-builder
 - skill-creator, mcp-builder, theme-factory, canvas-design, brand-guidelines
 - docx, xlsx, pdf, pptx, internal-comms, doc-coauthoring
@@ -57,9 +69,10 @@ bash install.sh
 
 - **성능과 품질 우선** — 토큰 비용보다 결과물 품질이 중요
 - **MCP 최소화** — context7만 사용 (나머지는 내장 기능/Skills로 대체)
+- **Plugins 적극 활용** — 공식 플러그인 13개로 MCP/프론트엔드/코드리뷰 강화
 - **GitHub** — gh CLI로 연동 (MCP 불필요)
 - **Memory** — Claude Code 내장 memory 시스템 사용
-- **안전장치** — 53개 deny 규칙 + 15개 자동화 훅
+- **안전장치** — 53개 deny 규칙 + 18개 자동화 훅
 
 ## 요구사항
 

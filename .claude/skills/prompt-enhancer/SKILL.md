@@ -1,99 +1,99 @@
 ---
 name: prompt-enhancer
-description: Enhance user prompts by analyzing project context (code structure, dependencies, conventions, existing patterns). Use when users provide brief development requests that would benefit from project-specific context to generate more accurate, contextually-aware prompts.
+description: 프로젝트 컨텍스트(코드 구조, 의존성, 컨벤션, 기존 패턴)를 분석하여 사용자 프롬프트를 강화합니다. 사용자가 간단한 개발 요청을 할 때 프로젝트별 맥락을 반영하여 더 정확하고 상황에 맞는 프롬프트를 생성합니다.
 ---
 
-# Prompt Enhancer
+# 프롬프트 강화기
 
-Transform brief development requests into clear, detailed requirements by analyzing project context. Present the enhanced requirements to the user for confirmation before implementation.
+프로젝트 컨텍스트를 분석하여 간단한 개발 요청을 명확하고 상세한 요구사항으로 변환합니다. 강화된 요구사항을 사용자에게 제시하고 구현 전 확인을 받습니다.
 
-## When to Use This Skill
+## 이 스킬을 사용할 때
 
-Use this skill when:
-- User provides a brief development request like "로그인 기능 만들어줘", "API 추가해줘"
-- Request lacks specific implementation details
-- User uploads project files or mentions "the project"
-- Task requires understanding project architecture
+다음 경우에 사용합니다:
+- 사용자가 "로그인 기능 만들어줘", "API 추가해줘" 같은 간단한 개발 요청을 할 때
+- 요청에 구체적인 구현 세부사항이 부족할 때
+- 사용자가 프로젝트 파일을 업로드하거나 "이 프로젝트"를 언급할 때
+- 작업에 프로젝트 아키텍처 이해가 필요할 때
 
-## Core Workflow
+## 핵심 워크플로우
 
-### Step 1: Analyze Project Context
+### 1단계: 프로젝트 컨텍스트 분석
 
-**Check for uploaded files:**
+**업로드된 파일 확인:**
 ```bash
 view /mnt/user-data/uploads
 ```
 
-**Gather key information:**
-- Project structure and organization
-- Technology stack (package.json, pubspec.yaml, requirements.txt, etc.)
-- Existing patterns (state management, API calls, routing)
-- Code conventions (naming, file structure)
-- Similar existing features
+**핵심 정보 수집:**
+- 프로젝트 구조 및 구성
+- 기술 스택 (package.json, pubspec.yaml, requirements.txt 등)
+- 기존 패턴 (상태 관리, API 호출, 라우팅)
+- 코드 컨벤션 (네이밍, 파일 구조)
+- 유사한 기존 기능
 
-### Step 2: Extract Request Intent
+### 2단계: 요청 의도 파악
 
-From the user's brief request, identify:
-- **Feature type**: New feature, bug fix, refactoring, API integration
-- **Scope**: Single screen, full flow, backend + frontend
-- **Dependencies**: Related features or systems
+사용자의 간단한 요청에서 다음을 식별합니다:
+- **기능 유형**: 신규 기능, 버그 수정, 리팩토링, API 연동
+- **범위**: 단일 화면, 전체 플로우, 백엔드 + 프론트엔드
+- **의존성**: 관련 기능 또는 시스템
 
-### Step 3: Build Enhanced Requirements
+### 3단계: 강화된 요구사항 작성
 
-Create a structured requirement document with:
+다음 구조의 요구사항 문서를 생성합니다:
 
 ```markdown
 # [기능명] 구현 요구사항
 
-## 📋 프로젝트 컨텍스트
-- Framework: [detected framework and version]
-- Architecture: [detected pattern]
-- State Management: [detected library]
-- Key Libraries: [list relevant dependencies]
+## 프로젝트 컨텍스트
+- Framework: [감지된 프레임워크 및 버전]
+- Architecture: [감지된 패턴]
+- State Management: [감지된 라이브러리]
+- Key Libraries: [관련 의존성 목록]
 
-## 🎯 구현 범위
+## 구현 범위
 
 ### 주요 기능
-1. [Main feature 1]
-2. [Main feature 2]
-3. [Main feature 3]
+1. [주요 기능 1]
+2. [주요 기능 2]
+3. [주요 기능 3]
 
 ### 파일 구조
 ```
-[Expected file structure based on project]
+[프로젝트 기반 예상 파일 구조]
 ```
 
-## 📝 상세 요구사항
+## 상세 요구사항
 
-### 1. [Layer/Component Name]
-- **위치**: [File path]
-- **목적**: [What it does]
+### 1. [레이어/컴포넌트명]
+- **위치**: [파일 경로]
+- **목적**: [기능 설명]
 - **구현 내용**:
-  - [Specific requirement 1]
-  - [Specific requirement 2]
-- **기존 패턴 따르기**: [Reference to existing pattern]
+  - [구체적 요구사항 1]
+  - [구체적 요구사항 2]
+- **기존 패턴 따르기**: [기존 패턴 참조]
 
-### 2. [Next Layer/Component]
+### 2. [다음 레이어/컴포넌트]
 ...
 
-## ✅ 성공 기준
-- [ ] [Acceptance criteria 1]
-- [ ] [Acceptance criteria 2]
-- [ ] [Acceptance criteria 3]
+## 성공 기준
+- [ ] [인수 기준 1]
+- [ ] [인수 기준 2]
+- [ ] [인수 기준 3]
 - [ ] 기존 코드 스타일 및 아키텍처 일관성 유지
 - [ ] 모든 주요 기능에 대한 테스트 작성
 
-## 🔍 확인 사항
-- [Any questions or clarifications needed]
-- [Assumptions made]
+## 확인 사항
+- [필요한 질문이나 명확화 사항]
+- [가정한 내용]
 
 ---
 이 요구사항으로 진행할까요? 수정이 필요한 부분이 있다면 말씀해주세요.
 ```
 
-### Step 4: Present to User
+### 4단계: 사용자에게 제시
 
-**Important**: After creating the enhanced requirements, present them to the user and ask for confirmation:
+**중요**: 강화된 요구사항을 작성한 후, 사용자에게 제시하고 확인을 요청합니다:
 
 ```
 위 요구사항을 분석해서 정리했습니다. 
@@ -102,22 +102,22 @@ Create a structured requirement document with:
 수정하거나 추가할 내용이 있으면 말씀해주세요!
 ```
 
-**Do NOT implement** until the user confirms. The goal is to clarify requirements first.
+사용자가 확인하기 전까지 **구현하지 마세요**. 목표는 먼저 요구사항을 명확히 하는 것입니다.
 
-## Analysis Patterns by Stack
+## 스택별 분석 패턴
 
-### Flutter Projects
+### Flutter 프로젝트
 
-**Detect**: pubspec.yaml, lib/ directory
+**감지 기준**: pubspec.yaml, lib/ 디렉토리
 
-**Key context to gather:**
-- State management (Riverpod, Bloc, Provider, GetX)
-- Architecture (Clean Architecture, MVVM, MVC)
-- Navigation (go_router, auto_route, Navigator)
-- Network (Dio, http)
-- Local storage (Hive, SharedPreferences, SQLite)
+**수집할 핵심 컨텍스트:**
+- 상태 관리 (Riverpod, Bloc, Provider, GetX)
+- 아키텍처 (Clean Architecture, MVVM, MVC)
+- 네비게이션 (go_router, auto_route, Navigator)
+- 네트워크 (Dio, http)
+- 로컬 저장소 (Hive, SharedPreferences, SQLite)
 
-**Enhanced requirements should include:**
+**강화된 요구사항에 포함할 내용:**
 ```markdown
 ## 구현 범위
 
@@ -136,110 +136,110 @@ Create a structured requirement document with:
 - Repository Implementation: lib/data/repositories/
 - DataSource: lib/data/datasources/
 
-### Navigation
-- Route: [route path]
-- Navigation method: [context.go/push based on router]
+### 네비게이션
+- Route: [라우트 경로]
+- Navigation method: [라우터 기반 context.go/push]
 
 ## 성공 기준
-✅ [State management]로 상태 관리
-✅ [Existing widget] 스타일 일관성 유지
-✅ API 응답 에러 처리
-✅ 로딩 상태 표시
-✅ Widget test 작성
+- [State management]로 상태 관리
+- [Existing widget] 스타일 일관성 유지
+- API 응답 에러 처리
+- 로딩 상태 표시
+- Widget test 작성
 ```
 
-### Next.js/React Projects
+### Next.js/React 프로젝트
 
-**Detect**: package.json with "next" or "react"
+**감지 기준**: package.json에 "next" 또는 "react" 포함
 
-**Key context to gather:**
-- Next.js version (App Router vs Pages Router)
-- State management (Zustand, Redux, Context)
-- Styling (Tailwind, CSS Modules, styled-components)
-- API approach (Next.js API routes, external API)
-- TypeScript usage
+**수집할 핵심 컨텍스트:**
+- Next.js 버전 (App Router vs Pages Router)
+- 상태 관리 (Zustand, Redux, Context)
+- 스타일링 (Tailwind, CSS Modules, styled-components)
+- API 방식 (Next.js API routes, 외부 API)
+- TypeScript 사용 여부
 
-**Enhanced requirements should include:**
+**강화된 요구사항에 포함할 내용:**
 ```markdown
 ## 구현 범위
 
-### UI Components
+### UI 컴포넌트
 - 컴포넌트: [path]/[ComponentName].tsx
-- Props interface: [existing pattern]
+- Props interface: [기존 패턴]
 - Styling: [Tailwind classes/CSS modules]
 
-### State Management
-- Store: [existing state structure]
-- Actions: [action naming convention]
+### 상태 관리
+- Store: [기존 상태 구조]
+- Actions: [액션 네이밍 컨벤션]
 
-### API Layer
-- Endpoint: [app/api or external]
+### API 레이어
+- Endpoint: [app/api 또는 외부]
 - Method: [GET/POST/PUT/DELETE]
 - Response type: [TypeScript interface]
 
-### Routing
-- Route: [app/[route] or pages/[route]]
-- Dynamic segments: [if needed]
+### 라우팅
+- Route: [app/[route] 또는 pages/[route]]
+- Dynamic segments: [필요 시]
 
 ## 성공 기준
-✅ TypeScript 타입 안정성
-✅ [Existing components] 재사용
-✅ 반응형 디자인 (모바일/데스크톱)
-✅ SEO 최적화 (메타데이터)
-✅ Unit test + Integration test
+- TypeScript 타입 안정성
+- [Existing components] 재사용
+- 반응형 디자인 (모바일/데스크톱)
+- SEO 최적화 (메타데이터)
+- Unit test + Integration test
 ```
 
-### Python (Django/FastAPI) Projects
+### Python (Django/FastAPI) 프로젝트
 
-**Detect**: requirements.txt, manage.py, main.py
+**감지 기준**: requirements.txt, manage.py, main.py
 
-**Key context to gather:**
-- Framework (Django, FastAPI, Flask)
+**수집할 핵심 컨텍스트:**
+- 프레임워크 (Django, FastAPI, Flask)
 - ORM (SQLAlchemy, Django ORM, Tortoise)
-- Authentication approach
-- API documentation (OpenAPI/Swagger)
+- 인증 방식
+- API 문서화 (OpenAPI/Swagger)
 
-**Enhanced requirements should include:**
+**강화된 요구사항에 포함할 내용:**
 ```markdown
 ## 구현 범위
 
-### Models/Schema
-- Model: [app]/models.py or schemas/[name].py
-- Fields: [field definitions with types]
+### 모델/스키마
+- Model: [app]/models.py 또는 schemas/[name].py
+- Fields: [타입 포함 필드 정의]
 - Relationships: [ForeignKey/relationships]
 
-### Views/Endpoints
-- Route: [path]
-- Method: [HTTP method]
-- Request/Response schema: [Pydantic models]
+### 뷰/엔드포인트
+- Route: [경로]
+- Method: [HTTP 메서드]
+- Request/Response schema: [Pydantic 모델]
 
-### Business Logic
-- Service: [if applicable]
-- Validation: [input validation]
+### 비즈니스 로직
+- Service: [해당 시]
+- Validation: [입력 검증]
 
-### Database
-- Migration: [migration command]
+### 데이터베이스
+- Migration: [마이그레이션 명령어]
 
 ## 성공 기준
-✅ API documentation 자동 생성
-✅ Request validation
-✅ Error handling with proper status codes
-✅ Unit test + Integration test
-✅ [Authentication] 적용
+- API 문서 자동 생성
+- 요청 검증
+- 적절한 상태 코드 포함 에러 처리
+- Unit test + Integration test
+- [Authentication] 적용
 ```
 
-## Example Enhancement
+## 강화 예시
 
-**User input:**
+**사용자 입력:**
 ```
 로그인 기능 구현해줘
 ```
 
-**Skill output:**
+**스킬 출력:**
 ```markdown
 # 로그인 기능 구현 요구사항
 
-## 📋 프로젝트 컨텍스트
+## 프로젝트 컨텍스트
 - Framework: Flutter 3.16.0 with null safety
 - Architecture: Clean Architecture
 - State Management: Riverpod (StateNotifier pattern)
@@ -247,7 +247,7 @@ Create a structured requirement document with:
 - Storage: flutter_secure_storage
 - Navigation: go_router
 
-## 🎯 구현 범위
+## 구현 범위
 
 ### 주요 기능
 1. 이메일/비밀번호 로그인 폼
@@ -275,7 +275,7 @@ lib/
     └── datasources/auth_remote_datasource.dart
 ```
 
-## 📝 상세 요구사항
+## 상세 요구사항
 
 ### 1. Presentation Layer - 로그인 화면
 - **위치**: lib/presentation/auth/login_screen.dart
@@ -289,7 +289,7 @@ lib/
   - 로딩 상태 시 오버레이 표시
 - **기존 패턴 따르기**: core/widgets/custom_text_field.dart 스타일 사용
 
-### 2. State Management
+### 2. 상태 관리
 - **위치**: lib/presentation/auth/login_notifier.dart
 - **목적**: 로그인 상태 관리
 - **구현 내용**:
@@ -336,7 +336,7 @@ lib/
   - UserModel을 User entity로 변환
 - **기존 패턴 따르기**: try-catch-Either 패턴
 
-### 7. Navigation 설정
+### 7. 네비게이션 설정
 - **위치**: lib/core/router/app_router.dart
 - **목적**: 로그인 라우트 추가
 - **구현 내용**:
@@ -345,7 +345,7 @@ lib/
   - 인증 가드 로직
 - **기존 패턴 따르기**: 기존 go_router 설정 방식
 
-## ✅ 성공 기준
+## 성공 기준
 - [ ] 사용자가 이메일과 비밀번호 입력
 - [ ] 로그인 버튼 클릭 시 API 호출
 - [ ] 성공 시 토큰 저장 및 홈 화면 이동
@@ -357,7 +357,7 @@ lib/
 - [ ] Repository test 작성 (mock API)
 - [ ] UseCase test 작성
 
-## 🔍 확인 사항
+## 확인 사항
 - API 엔드포인트 주소가 `https://api.example.com`이 맞나요?
 - 토큰 만료 시 자동 갱신 기능이 필요한가요?
 - 소셜 로그인(구글, 애플 등)도 함께 구현할까요?
@@ -367,11 +367,11 @@ lib/
 위 요구사항으로 진행할까요? 수정이 필요한 부분이 있다면 말씀해주세요!
 ```
 
-## Tips for Effective Enhancement
+## 효과적인 강화를 위한 팁
 
-### Always Ask for Clarification
+### 항상 명확화를 요청하세요
 
-If the project context is unclear or insufficient:
+프로젝트 컨텍스트가 불명확하거나 부족한 경우:
 ```
 프로젝트 파일을 업로드해주시면 더 정확한 요구사항을 만들 수 있습니다.
 또는 다음 정보를 알려주세요:
@@ -380,9 +380,9 @@ If the project context is unclear or insufficient:
 - 기존 프로젝트 구조
 ```
 
-### Include Visual Examples
+### 시각적 예시를 포함하세요
 
-When helpful, mention existing screens/components:
+도움이 될 때 기존 화면/컴포넌트를 언급합니다:
 ```
 기존 ProfileScreen과 유사한 레이아웃으로 구현
 - AppBar 스타일 동일
@@ -390,17 +390,17 @@ When helpful, mention existing screens/components:
 - PrimaryButton 컴포넌트 사용
 ```
 
-### Highlight Dependencies
+### 의존성을 강조하세요
 
 ```
-## 🔗 연관 기능
+## 연관 기능
 - UserRepository: 사용자 정보 조회에 재사용
 - TokenStorage: 기존 토큰 저장 로직 활용
 - ErrorHandler: 공통 에러 처리 적용
 ```
 
-## Reference Files
+## 참고 파일
 
-For detailed patterns:
-- **Enhancement patterns**: references/enhancement-patterns.md
-- **Framework guides**: references/framework-guides.md
+상세 패턴 참조:
+- **강화 패턴**: references/enhancement-patterns.md
+- **프레임워크 가이드**: references/framework-guides.md

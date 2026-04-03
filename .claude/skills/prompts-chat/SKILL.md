@@ -1,48 +1,48 @@
 ---
 name: prompts-chat
-description: 스킬/프롬프트 탐색 및 검색 통합 스킬. 사용자가 스킬 설치, 프롬프트 검색, 프롬프트 개선을 요청할 때 활성화.
+description: prompts.chat MCP 서버를 통해 AI 스킬과 프롬프트를 검색, 조회, 설치, 개선하는 통합 스킬. 사용자가 "스킬 찾아줘", "프롬프트 검색", "스킬 설치", "프롬프트 개선해줘", "skills.sh", "prompts.chat" 등을 언급할 때 활성화. 코드 리뷰 스킬 추천, 글쓰기 프롬프트 탐색, 기존 프롬프트 품질 향상 등 스킬/프롬프트 마켓플레이스 관련 모든 요청에 사용.
 ---
 
-# Prompts & Skills Lookup
+# 프롬프트 & 스킬 검색
 
 prompts.chat MCP 서버를 통해 AI 스킬과 프롬프트를 검색, 조회, 설치, 개선하는 통합 스킬.
 
-## When to Activate
+## 활성화 조건
 
 - 스킬 검색/설치 요청 ("코드 리뷰 스킬 찾아줘", "스킬 설치해줘")
 - 프롬프트 검색/조회 요청 ("글쓰기 프롬프트 찾아줘")
 - 프롬프트 개선 요청 ("이 프롬프트 더 좋게 만들어줘")
 - prompts.chat, skills.sh 언급 시
 
-## MCP Tools (prompts.chat)
+## MCP 도구 (prompts.chat)
 
 > prompts.chat MCP 서버가 설정되지 않은 경우 아래 CLI 방식을 사용한다.
 
-### Skills 모드
+### 스킬 모드
 
-| Tool | 용도 | 주요 파라미터 |
+| 도구 | 용도 | 주요 파라미터 |
 |------|------|-------------|
 | `search_skills` | 키워드로 스킬 검색 | query, limit (max 50), category, tag |
 | `get_skill` | ID로 스킬 조회 (파일 포함) | id |
 
-### Prompts 모드
+### 프롬프트 모드
 
-| Tool | 용도 | 주요 파라미터 |
+| 도구 | 용도 | 주요 파라미터 |
 |------|------|-------------|
 | `search_prompts` | 키워드로 프롬프트 검색 | query, limit, type (TEXT/STRUCTURED/IMAGE/VIDEO/AUDIO), category, tag |
 | `get_prompt` | ID로 프롬프트 조회 | id |
 | `improve_prompt` | AI로 프롬프트 개선 | prompt, outputType, outputFormat |
 
-## Skills 워크플로우
+## 스킬 워크플로우
 
 ### 검색
 
 `search_skills`로 검색 후 결과 표시:
-- Title, Description
-- Author
+- 제목, 설명
+- 작성자
 - 파일 목록 (SKILL.md, references, scripts)
-- Category, Tags
-- Link
+- 카테고리, 태그
+- 링크
 
 ### 설치
 
@@ -64,15 +64,15 @@ npx skills init <name>             # 새 스킬 생성
 
 웹 브라우징: https://skills.sh/
 
-## Prompts 워크플로우
+## 프롬프트 워크플로우
 
 ### 검색
 
 `search_prompts`로 검색 후 결과 표시:
-- Title, Description
-- Author
-- Category, Tags
-- Link
+- 제목, 설명
+- 작성자
+- 카테고리, 태그
+- 링크
 
 ### 조회
 
@@ -88,7 +88,7 @@ npx skills init <name>             # 새 스킬 생성
 - outputFormat: text, structured_json, structured_yaml
 - 개선 결과와 변경 사항 설명 제공
 
-## Guidelines
+## 가이드라인
 
 - 사용자가 직접 만들기 전에 항상 먼저 검색
 - 검색 결과를 읽기 쉬운 형식으로 표시

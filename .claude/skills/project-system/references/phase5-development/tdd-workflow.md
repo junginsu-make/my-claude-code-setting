@@ -282,6 +282,23 @@ git branch -d phase/1-auth
 
 ---
 
+## 후반 파이프라인 (Post-TDD Pipeline)
+
+Quality Gate 통과 후 반드시 아래 파이프라인을 실행한다.
+`/auto` 사용 시 자동 실행되며, 수동 시에는 순서대로 호출한다.
+
+| 순서 | 명령어 | 목적 | 중단 조건 |
+|------|--------|------|----------|
+| 1 | `/code-review` | 보안 + 품질 검사 | CRITICAL/HIGH 이슈 |
+| 2 | `/handoff-verify --effort high` | fresh context 빌드/테스트 검증 | 5회 재시도 실패 |
+| 3 | `/commit-push-pr` | 커밋 + PR 생성 + 선택적 머지 | Merge Gate 실패 |
+| 4 | `/sync-docs` | CLAUDE.md, spec.md 동기화 | 없음 |
+| 5 | `/next-task` | 다음 태스크 추천 | 없음 |
+
+**권장**: `/auto "태스크 설명" --mode feature`로 TDD부터 PR까지 원스텝 실행
+
+---
+
 ## 난관 극복 시 기록 (Lessons Learned)
 
 어려운 문제를 해결했을 때 CLAUDE.md에 기록:

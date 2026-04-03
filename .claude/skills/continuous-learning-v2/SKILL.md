@@ -1,27 +1,27 @@
 ---
 name: continuous-learning-v2
-description: Instinct-based learning system that observes sessions via hooks, creates atomic instincts with confidence scoring, and evolves them into skills/commands/agents.
+description: 훅을 통해 세션을 관찰하고, 신뢰도 점수가 부여된 원자적 본능을 생성하며, 이를 스킬/명령어/에이전트로 진화시키는 본능 기반 학습 시스템입니다.
 version: 2.0.0
 ---
 
-# Continuous Learning v2 - Instinct-Based Architecture
+# Continuous Learning v2 - 본능 기반 아키텍처
 
-An advanced learning system that turns your Claude Code sessions into reusable knowledge through atomic "instincts" - small learned behaviors with confidence scoring.
+Claude Code 세션을 원자적 "본능(instinct)" — 신뢰도 점수가 부여된 소규모 학습 행동 — 을 통해 재사용 가능한 지식으로 변환하는 고급 학습 시스템입니다.
 
-## What's New in v2
+## v2의 새로운 점
 
-| Feature | v1 | v2 |
-|---------|----|----|
-| Observation | Stop hook (session end) | PreToolUse/PostToolUse (100% reliable) |
-| Analysis | Main context | Background agent (Haiku) |
-| Granularity | Full skills | Atomic "instincts" |
-| Confidence | None | 0.3-0.9 weighted |
-| Evolution | Direct to skill | Instincts → cluster → skill/command/agent |
-| Sharing | None | Export/import instincts |
+| 기능 | v1 | v2 |
+|------|----|----|
+| 관찰 | Stop hook (세션 종료) | PreToolUse/PostToolUse (100% 신뢰) |
+| 분석 | 메인 컨텍스트 | 백그라운드 에이전트 (Haiku) |
+| 세분화 | 전체 스킬 | 원자적 "본능" |
+| 신뢰도 | 없음 | 0.3-0.9 가중치 |
+| 진화 | 직접 스킬로 | 본능 → 클러스터 → 스킬/명령어/에이전트 |
+| 공유 | 없음 | 본능 내보내기/가져오기 |
 
-## The Instinct Model
+## 본능 모델
 
-An instinct is a small learned behavior:
+본능(instinct)은 소규모 학습 행동입니다:
 
 ```yaml
 ---
@@ -42,13 +42,13 @@ Use functional patterns over classes when appropriate.
 - User corrected class-based approach to functional on 2025-01-15
 ```
 
-**Properties:**
-- **Atomic** — one trigger, one action
-- **Confidence-weighted** — 0.3 = tentative, 0.9 = near certain
-- **Domain-tagged** — code-style, testing, git, debugging, workflow, etc.
-- **Evidence-backed** — tracks what observations created it
+**속성:**
+- **원자적** — 하나의 트리거, 하나의 액션
+- **신뢰도 가중치** — 0.3 = 잠정적, 0.9 = 거의 확실
+- **도메인 태그** — code-style, testing, git, debugging, workflow 등
+- **증거 기반** — 어떤 관찰로부터 생성되었는지 추적
 
-## How It Works
+## 작동 방식
 
 ```
 Session Activity
@@ -88,11 +88,11 @@ Session Activity
 └─────────────────────────────────────────┘
 ```
 
-## Quick Start
+## 빠른 시작
 
-### 1. Enable Observation Hooks
+### 1. 관찰 훅 활성화
 
-Add to your `~/.claude/settings.json`:
+`~/.claude/settings.json`에 추가:
 
 ```json
 {
@@ -115,34 +115,34 @@ Add to your `~/.claude/settings.json`:
 }
 ```
 
-### 2. Initialize Directory Structure
+### 2. 디렉토리 구조 초기화
 
 ```bash
 mkdir -p ~/.claude/homunculus/{instincts/{personal,inherited},evolved/{agents,skills,commands}}
 touch ~/.claude/homunculus/observations.jsonl
 ```
 
-### 3. Run the Observer Agent (Optional)
+### 3. 관찰자 에이전트 실행 (선택)
 
-The observer can run in the background analyzing observations:
+관찰자는 백그라운드에서 관찰 데이터를 분석할 수 있습니다:
 
 ```bash
 # Start background observer
 ~/.claude/skills/continuous-learning-v2/agents/start-observer.sh
 ```
 
-## Commands
+## 명령어
 
-| Command | Description |
-|---------|-------------|
-| `/instinct-status` | Show all learned instincts with confidence |
-| `/evolve` | Cluster related instincts into skills/commands |
-| `/instinct-export` | Export instincts for sharing |
-| `/instinct-import <file>` | Import instincts from others |
+| 명령어 | 설명 |
+|--------|------|
+| `/instinct-status` | 학습된 모든 본능과 신뢰도 표시 |
+| `/evolve` | 관련 본능을 스킬/명령어로 클러스터링 |
+| `/instinct-export` | 공유를 위해 본능 내보내기 |
+| `/instinct-import <file>` | 다른 사람의 본능 가져오기 |
 
-## Configuration
+## 설정
 
-Edit `config.json`:
+`config.json` 편집:
 
 ```json
 {
@@ -178,7 +178,7 @@ Edit `config.json`:
 }
 ```
 
-## File Structure
+## 파일 구조
 
 ```
 ~/.claude/homunculus/
@@ -194,59 +194,59 @@ Edit `config.json`:
     └── commands/           # Generated commands
 ```
 
-## Integration with Skill Creator
+## Skill Creator 통합
 
-When you use the [Skill Creator GitHub App](https://skill-creator.app), it now generates **both**:
-- Traditional SKILL.md files (for backward compatibility)
-- Instinct collections (for v2 learning system)
+[Skill Creator GitHub App](https://skill-creator.app)을 사용하면 이제 **두 가지 모두** 생성됩니다:
+- 기존 SKILL.md 파일 (하위 호환)
+- 본능 컬렉션 (v2 학습 시스템용)
 
-Instincts from repo analysis have `source: "repo-analysis"` and include the source repository URL.
+저장소 분석에서 생성된 본능은 `source: "repo-analysis"`이며 소스 저장소 URL을 포함합니다.
 
-## Confidence Scoring
+## 신뢰도 점수
 
-Confidence evolves over time:
+신뢰도는 시간에 따라 변화합니다:
 
-| Score | Meaning | Behavior |
-|-------|---------|----------|
-| 0.3 | Tentative | Suggested but not enforced |
-| 0.5 | Moderate | Applied when relevant |
-| 0.7 | Strong | Auto-approved for application |
-| 0.9 | Near-certain | Core behavior |
+| 점수 | 의미 | 동작 |
+|------|------|------|
+| 0.3 | 잠정적 | 제안되지만 강제되지 않음 |
+| 0.5 | 보통 | 관련 시 적용 |
+| 0.7 | 강함 | 적용 자동 승인 |
+| 0.9 | 거의 확실 | 핵심 동작 |
 
-**Confidence increases** when:
-- Pattern is repeatedly observed
-- User doesn't correct the suggested behavior
-- Similar instincts from other sources agree
+**신뢰도 증가** 조건:
+- 패턴이 반복적으로 관찰됨
+- 사용자가 제안된 동작을 교정하지 않음
+- 다른 소스의 유사 본능이 일치함
 
-**Confidence decreases** when:
-- User explicitly corrects the behavior
-- Pattern isn't observed for extended periods
-- Contradicting evidence appears
+**신뢰도 감소** 조건:
+- 사용자가 명시적으로 동작을 교정함
+- 오랜 기간 패턴이 관찰되지 않음
+- 모순되는 증거가 나타남
 
-## Why Hooks vs Skills for Observation?
+## 관찰에 훅을 사용하는 이유
 
-> "v1 relied on skills to observe. Skills are probabilistic—they fire ~50-80% of the time based on Claude's judgment."
+> "v1은 스킬로 관찰에 의존했습니다. 스킬은 확률적이어서 Claude의 판단에 따라 약 50-80%의 확률로 실행됩니다."
 
-Hooks fire **100% of the time**, deterministically. This means:
-- Every tool call is observed
-- No patterns are missed
-- Learning is comprehensive
+훅은 **100%** 결정적으로 실행됩니다. 이는 다음을 의미합니다:
+- 모든 도구 호출이 관찰됨
+- 패턴 누락 없음
+- 학습이 포괄적임
 
-## Backward Compatibility
+## 하위 호환성
 
-v2 is fully compatible with v1:
-- Existing `~/.claude/skills/learned/` skills still work
-- Stop hook still runs (but now also feeds into v2)
-- Gradual migration path: run both in parallel
+v2는 v1과 완전히 호환됩니다:
+- 기존 `~/.claude/skills/learned/` 스킬이 그대로 작동
+- Stop hook이 계속 실행됨 (이제 v2에도 데이터 제공)
+- 점진적 마이그레이션 경로: 둘 다 병행 실행 가능
 
-## Privacy
+## 프라이버시
 
-- Observations stay **local** on your machine
-- Only **instincts** (patterns) can be exported
-- No actual code or conversation content is shared
-- You control what gets exported
+- 관찰 데이터는 사용자의 기기에 **로컬**로 유지
+- **본능**(패턴)만 내보내기 가능
+- 실제 코드나 대화 내용은 공유되지 않음
+- 내보낼 항목은 사용자가 제어
 
-## Agent Memory Integration
+## 에이전트 메모리 통합
 
 continuous-learning-v2의 instinct 시스템은 에이전트의 Self-Evolution Protocol과 상호보완적으로 동작한다.
 
@@ -277,12 +277,12 @@ Agent Self-Evolution (작업 완료 기반)
 3. **세션 종료**: `/session-wrap`이 양쪽 데이터를 종합하여 정리
 4. **다음 세션 시작**: `/sync`로 프로젝트 문서 동기화
 
-## Related
+## 관련 링크
 
-- [Skill Creator](https://skill-creator.app) - Generate instincts from repo history
-- [Homunculus](https://github.com/humanplane/homunculus) - Inspiration for v2 architecture
-- [The Longform Guide](https://x.com/affaanmustafa/status/2014040193557471352) - Continuous learning section
+- [Skill Creator](https://skill-creator.app) - 저장소 히스토리에서 본능 생성
+- [Homunculus](https://github.com/humanplane/homunculus) - v2 아키텍처 영감
+- [The Longform Guide](https://x.com/affaanmustafa/status/2014040193557471352) - 지속적 학습 섹션
 
 ---
 
-*Instinct-based learning: teaching Claude your patterns, one observation at a time.*
+*본능 기반 학습: 한 번에 하나의 관찰로 Claude에게 당신의 패턴을 가르칩니다.*

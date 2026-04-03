@@ -1,130 +1,130 @@
 ---
 name: canvas-design
-description: Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.
+description: 디자인 철학을 활용하여 .png 및 .pdf 문서로 아름다운 비주얼 아트를 제작합니다. 사용자가 포스터, 예술 작품, 디자인 또는 기타 정적 이미지를 만들어달라고 요청할 때 이 스킬을 사용하세요. 저작권 침해를 방지하기 위해 기존 작가의 작품을 복제하지 않고 독창적인 시각 디자인을 제작합니다.
 license: Complete terms in LICENSE.txt
 ---
 
-These are instructions for creating design philosophies - aesthetic movements that are then EXPRESSED VISUALLY. Output only .md files, .pdf files, and .png files.
+디자인 철학을 만드는 지침입니다 — 미학적 운동을 정의하고 이를 시각적으로 표현합니다. .md 파일, .pdf 파일, .png 파일만 출력합니다.
 
-Complete this in two steps:
-1. Design Philosophy Creation (.md file)
-2. Express by creating it on a canvas (.pdf file or .png file)
+다음 두 단계로 완성합니다:
+1. 디자인 철학 생성 (.md 파일)
+2. 캔버스에 표현하여 제작 (.pdf 파일 또는 .png 파일)
 
-First, undertake this task:
+먼저 이 작업을 수행하세요:
 
-## DESIGN PHILOSOPHY CREATION
+## 디자인 철학 생성
 
-To begin, create a VISUAL PHILOSOPHY (not layouts or templates) that will be interpreted through:
-- Form, space, color, composition
-- Images, graphics, shapes, patterns
-- Minimal text as visual accent
+시작하기 위해 다음을 통해 해석될 시각적 철학(레이아웃이나 템플릿이 아닌)을 만드세요:
+- 형태, 공간, 색상, 구성
+- 이미지, 그래픽, 도형, 패턴
+- 시각적 악센트로서의 최소한의 텍스트
 
-### THE CRITICAL UNDERSTANDING
-- What is received: Some subtle input or instructions by the user that should be taken into account, but used as a foundation; it should not constrain creative freedom.
-- What is created: A design philosophy/aesthetic movement.
-- What happens next: Then, the same version receives the philosophy and EXPRESSES IT VISUALLY - creating artifacts that are 90% visual design, 10% essential text.
+### 핵심 이해
+- 받는 것: 사용자의 미묘한 입력이나 지시를 고려하되, 기반으로만 활용해야 합니다. 창작의 자유를 제한해서는 안 됩니다.
+- 만드는 것: 디자인 철학/미학적 운동.
+- 다음 단계: 동일한 버전이 철학을 받아 시각적으로 표현합니다 — 90% 시각 디자인, 10% 필수 텍스트로 구성된 산출물을 제작합니다.
 
-Consider this approach:
-- Write a manifesto for an art movement
-- The next phase involves making the artwork
+이 접근법을 고려하세요:
+- 예술 운동을 위한 선언문 작성
+- 다음 단계에서 작품 제작
 
-The philosophy must emphasize: Visual expression. Spatial communication. Artistic interpretation. Minimal words.
+철학은 다음을 강조해야 합니다: 시각적 표현. 공간적 소통. 예술적 해석. 최소한의 단어.
 
-### HOW TO GENERATE A VISUAL PHILOSOPHY
+### 시각적 철학 생성 방법
 
-**Name the movement** (1-2 words): "Brutalist Joy" / "Chromatic Silence" / "Metabolist Dreams"
+**운동에 이름 부여** (1-2단어): "브루탈리스트 기쁨" / "색채적 침묵" / "메타볼리스트 꿈"
 
-**Articulate the philosophy** (4-6 paragraphs - concise but complete):
+**철학 명문화** (4-6단락 — 간결하면서도 완전하게):
 
-To capture the VISUAL essence, express how the philosophy manifests through:
-- Space and form
-- Color and material
-- Scale and rhythm
-- Composition and balance
-- Visual hierarchy
+시각적 본질을 포착하기 위해 철학이 다음을 통해 어떻게 드러나는지 표현하세요:
+- 공간과 형태
+- 색상과 재질
+- 스케일과 리듬
+- 구성과 균형
+- 시각적 위계
 
-**CRITICAL GUIDELINES:**
-- **Avoid redundancy**: Each design aspect should be mentioned once. Avoid repeating points about color theory, spatial relationships, or typographic principles unless adding new depth.
-- **Emphasize craftsmanship REPEATEDLY**: The philosophy MUST stress multiple times that the final work should appear as though it took countless hours to create, was labored over with care, and comes from someone at the absolute top of their field. This framing is essential - repeat phrases like "meticulously crafted," "the product of deep expertise," "painstaking attention," "master-level execution."
-- **Leave creative space**: Remain specific about the aesthetic direction, but concise enough that the next Claude has room to make interpretive choices also at a extremely high level of craftmanship.
+**핵심 가이드라인:**
+- **중복 방지**: 각 디자인 요소는 한 번만 언급하세요. 색채 이론, 공간적 관계, 타이포그래피 원칙에 대해 새로운 깊이를 더하지 않는 한 반복하지 마세요.
+- **장인정신 반복 강조**: 철학은 최종 작업이 수없이 많은 시간을 들여 만든 것처럼, 정성을 다해 작업한 것처럼, 해당 분야 최고의 전문가가 만든 것처럼 보여야 한다는 점을 반드시 여러 번 강조해야 합니다. 이 프레이밍은 필수입니다 — "세심하게 제작된", "깊은 전문성의 산물", "세밀한 주의력", "마스터급 실행" 같은 표현을 반복하세요.
+- **창작 여지 남기기**: 미학적 방향에 대해 구체적이되, 다음 Claude가 극도로 높은 수준의 장인정신으로 해석적 선택을 할 수 있을 만큼 간결하게 유지하세요.
 
-The philosophy must guide the next version to express ideas VISUALLY, not through text. Information lives in design, not paragraphs.
+철학은 다음 버전이 텍스트가 아닌 시각적으로 아이디어를 표현하도록 안내해야 합니다. 정보는 문단이 아니라 디자인에 담깁니다.
 
-### PHILOSOPHY EXAMPLES
+### 철학 예시
 
-**"Concrete Poetry"**
-Philosophy: Communication through monumental form and bold geometry.
-Visual expression: Massive color blocks, sculptural typography (huge single words, tiny labels), Brutalist spatial divisions, Polish poster energy meets Le Corbusier. Ideas expressed through visual weight and spatial tension, not explanation. Text as rare, powerful gesture - never paragraphs, only essential words integrated into the visual architecture. Every element placed with the precision of a master craftsman.
+**"콘크리트 시(Concrete Poetry)"**
+철학: 기념비적 형태와 대담한 기하학을 통한 소통.
+시각적 표현: 거대한 색상 블록, 조각적 타이포그래피(거대한 단어 하나, 작은 라벨), 브루탈리스트 공간 분할, 폴란드 포스터 에너지와 르 코르뷔지에의 만남. 설명이 아닌 시각적 무게와 공간적 긴장감으로 아이디어 표현. 텍스트는 희귀하고 강력한 제스처 — 절대 문단이 아니라 시각적 건축에 통합된 필수 단어만. 모든 요소가 마스터 장인의 정밀함으로 배치됨.
 
-**"Chromatic Language"**
-Philosophy: Color as the primary information system.
-Visual expression: Geometric precision where color zones create meaning. Typography minimal - small sans-serif labels letting chromatic fields communicate. Think Josef Albers' interaction meets data visualization. Information encoded spatially and chromatically. Words only to anchor what color already shows. The result of painstaking chromatic calibration.
+**"색채 언어(Chromatic Language)"**
+철학: 색상이 주요 정보 시스템.
+시각적 표현: 색상 영역이 의미를 만드는 기하학적 정밀함. 타이포그래피는 최소 — 작은 산세리프 라벨이 색채 필드의 소통을 보조. 요제프 알버스의 상호작용과 데이터 시각화의 만남. 정보는 공간적, 색채적으로 인코딩. 단어는 색상이 이미 보여주는 것을 고정하기 위해서만. 세밀한 색채 보정의 결과물.
 
-**"Analog Meditation"**
-Philosophy: Quiet visual contemplation through texture and breathing room.
-Visual expression: Paper grain, ink bleeds, vast negative space. Photography and illustration dominate. Typography whispered (small, restrained, serving the visual). Japanese photobook aesthetic. Images breathe across pages. Text appears sparingly - short phrases, never explanatory blocks. Each composition balanced with the care of a meditation practice.
+**"아날로그 명상(Analog Meditation)"**
+철학: 질감과 여백을 통한 조용한 시각적 관조.
+시각적 표현: 종이 결, 잉크 번짐, 광대한 네거티브 스페이스. 사진과 일러스트레이션이 지배. 타이포그래피는 속삭이듯(작고, 절제되고, 시각을 보조). 일본 사진집 미학. 이미지가 페이지를 가로질러 숨 쉼. 텍스트는 드물게 등장 — 짧은 구절만, 설명적 블록 없음. 각 구성이 명상적 수련의 정성으로 균형 잡힘.
 
-**"Organic Systems"**
-Philosophy: Natural clustering and modular growth patterns.
-Visual expression: Rounded forms, organic arrangements, color from nature through architecture. Information shown through visual diagrams, spatial relationships, iconography. Text only for key labels floating in space. The composition tells the story through expert spatial orchestration.
+**"유기적 시스템(Organic Systems)"**
+철학: 자연스러운 군집화와 모듈형 성장 패턴.
+시각적 표현: 둥근 형태, 유기적 배열, 건축을 통한 자연의 색상. 시각적 다이어그램, 공간적 관계, 아이코노그래피를 통해 정보 표시. 텍스트는 공간에 떠다니는 핵심 라벨에만. 전문적인 공간 오케스트레이션을 통해 구성이 이야기를 전달.
 
-**"Geometric Silence"**
-Philosophy: Pure order and restraint.
-Visual expression: Grid-based precision, bold photography or stark graphics, dramatic negative space. Typography precise but minimal - small essential text, large quiet zones. Swiss formalism meets Brutalist material honesty. Structure communicates, not words. Every alignment the work of countless refinements.
+**"기하학적 침묵(Geometric Silence)"**
+철학: 순수한 질서와 절제.
+시각적 표현: 그리드 기반 정밀함, 대담한 사진 또는 스타크한 그래픽, 극적인 네거티브 스페이스. 타이포그래피는 정밀하되 최소 — 작은 필수 텍스트, 큰 고요한 영역. 스위스 형식주의와 브루탈리스트 재료 정직성의 만남. 구조가 소통하지, 단어가 아님. 모든 정렬이 수없는 정제의 결과.
 
-*These are condensed examples. The actual design philosophy should be 4-6 substantial paragraphs.*
+*이것들은 축약된 예시입니다. 실제 디자인 철학은 4-6개의 실질적인 단락이어야 합니다.*
 
-### ESSENTIAL PRINCIPLES
-- **VISUAL PHILOSOPHY**: Create an aesthetic worldview to be expressed through design
-- **MINIMAL TEXT**: Always emphasize that text is sparse, essential-only, integrated as visual element - never lengthy
-- **SPATIAL EXPRESSION**: Ideas communicate through space, form, color, composition - not paragraphs
-- **ARTISTIC FREEDOM**: The next Claude interprets the philosophy visually - provide creative room
-- **PURE DESIGN**: This is about making ART OBJECTS, not documents with decoration
-- **EXPERT CRAFTSMANSHIP**: Repeatedly emphasize the final work must look meticulously crafted, labored over with care, the product of countless hours by someone at the top of their field
+### 필수 원칙
+- **시각적 철학**: 디자인을 통해 표현될 미학적 세계관 창조
+- **최소 텍스트**: 텍스트는 항상 드물고, 필수적이며, 시각적 요소로 통합 — 절대 장문 아님
+- **공간적 표현**: 아이디어는 문단이 아니라 공간, 형태, 색상, 구성을 통해 소통
+- **예술적 자유**: 다음 Claude가 철학을 시각적으로 해석 — 창작 여지 제공
+- **순수 디자인**: 장식이 있는 문서가 아니라 예술 오브제를 만드는 것
+- **전문가 장인정신**: 최종 작업이 세심하게 제작되고, 정성을 다하고, 수없이 많은 시간의 산물이며, 분야 최고의 전문가가 만든 것처럼 보여야 한다는 점을 반복 강조
 
-**The design philosophy should be 4-6 paragraphs long.** Fill it with poetic design philosophy that brings together the core vision. Avoid repeating the same points. Keep the design philosophy generic without mentioning the intention of the art, as if it can be used wherever. Output the design philosophy as a .md file.
-
----
-
-## DEDUCING THE SUBTLE REFERENCE
-
-**CRITICAL STEP**: Before creating the canvas, identify the subtle conceptual thread from the original request.
-
-**THE ESSENTIAL PRINCIPLE**:
-The topic is a **subtle, niche reference embedded within the art itself** - not always literal, always sophisticated. Someone familiar with the subject should feel it intuitively, while others simply experience a masterful abstract composition. The design philosophy provides the aesthetic language. The deduced topic provides the soul - the quiet conceptual DNA woven invisibly into form, color, and composition.
-
-This is **VERY IMPORTANT**: The reference must be refined so it enhances the work's depth without announcing itself. Think like a jazz musician quoting another song - only those who know will catch it, but everyone appreciates the music.
+**디자인 철학은 4-6단락이어야 합니다.** 핵심 비전을 하나로 모으는 시적인 디자인 철학으로 채우세요. 같은 포인트를 반복하지 마세요. 예술의 의도를 언급하지 않고 어디에나 사용할 수 있는 것처럼 디자인 철학을 범용적으로 유지하세요. 디자인 철학을 .md 파일로 출력하세요.
 
 ---
 
-## CANVAS CREATION
+## 미묘한 레퍼런스 도출
 
-With both the philosophy and the conceptual framework established, express it on a canvas. Take a moment to gather thoughts and clear the mind. Use the design philosophy created and the instructions below to craft a masterpiece, embodying all aspects of the philosophy with expert craftsmanship.
+**핵심 단계**: 캔버스를 만들기 전에 원래 요청에서 미묘한 개념적 실마리를 파악하세요.
 
-**IMPORTANT**: For any type of content, even if the user requests something for a movie/game/book, the approach should still be sophisticated. Never lose sight of the idea that this should be art, not something that's cartoony or amateur.
+**필수 원칙**:
+주제는 **예술 자체에 내재된 미묘하고 니치한 레퍼런스**입니다 — 항상 문자적이지 않고, 항상 세련됩니다. 해당 주제에 익숙한 사람은 직관적으로 느끼고, 다른 사람은 단순히 마스터급 추상 구성을 경험합니다. 디자인 철학은 미학적 언어를 제공합니다. 도출된 주제는 영혼 — 형태, 색상, 구성에 보이지 않게 엮인 조용한 개념적 DNA를 제공합니다.
 
-To create museum or magazine quality work, use the design philosophy as the foundation. Create one single page, highly visual, design-forward PDF or PNG output (unless asked for more pages). Generally use repeating patterns and perfect shapes. Treat the abstract philosophical design as if it were a scientific bible, borrowing the visual language of systematic observation—dense accumulation of marks, repeated elements, or layered patterns that build meaning through patient repetition and reward sustained viewing. Add sparse, clinical typography and systematic reference markers that suggest this could be a diagram from an imaginary discipline, treating the invisible subject with the same reverence typically reserved for documenting observable phenomena. Anchor the piece with simple phrase(s) or details positioned subtly, using a limited color palette that feels intentional and cohesive. Embrace the paradox of using analytical visual language to express ideas about human experience: the result should feel like an artifact that proves something ephemeral can be studied, mapped, and understood through careful attention. This is true art. 
-
-**Text as a contextual element**: Text is always minimal and visual-first, but let context guide whether that means whisper-quiet labels or bold typographic gestures. A punk venue poster might have larger, more aggressive type than a minimalist ceramics studio identity. Most of the time, font should be thin. All use of fonts must be design-forward and prioritize visual communication. Regardless of text scale, nothing falls off the page and nothing overlaps. Every element must be contained within the canvas boundaries with proper margins. Check carefully that all text, graphics, and visual elements have breathing room and clear separation. This is non-negotiable for professional execution. **IMPORTANT: Use different fonts if writing text. Search the `./canvas-fonts` directory. Regardless of approach, sophistication is non-negotiable.**
-
-Download and use whatever fonts are needed to make this a reality. Get creative by making the typography actually part of the art itself -- if the art is abstract, bring the font onto the canvas, not typeset digitally.
-
-To push boundaries, follow design instinct/intuition while using the philosophy as a guiding principle. Embrace ultimate design freedom and choice. Push aesthetics and design to the frontier. 
-
-**CRITICAL**: To achieve human-crafted quality (not AI-generated), create work that looks like it took countless hours. Make it appear as though someone at the absolute top of their field labored over every detail with painstaking care. Ensure the composition, spacing, color choices, typography - everything screams expert-level craftsmanship. Double-check that nothing overlaps, formatting is flawless, every detail perfect. Create something that could be shown to people to prove expertise and rank as undeniably impressive.
-
-Output the final result as a single, downloadable .pdf or .png file, alongside the design philosophy used as a .md file.
+이것은 **매우 중요합니다**: 레퍼런스는 작품의 깊이를 높이되 스스로를 드러내지 않도록 정제되어야 합니다. 재즈 뮤지션이 다른 곡을 인용하듯 — 아는 사람만 알아채지만, 모두가 음악을 감상합니다.
 
 ---
 
-## FINAL STEP
+## 캔버스 제작
 
-**IMPORTANT**: The user ALREADY said "It isn't perfect enough. It must be pristine, a masterpiece if craftsmanship, as if it were about to be displayed in a museum."
+철학과 개념적 프레임워크가 모두 확립되면 캔버스에 표현하세요. 잠시 생각을 정리하고 마음을 비우세요. 만든 디자인 철학과 아래 지침을 사용하여 철학의 모든 측면을 전문가적 장인정신으로 구현한 걸작을 만드세요.
 
-**CRITICAL**: To refine the work, avoid adding more graphics; instead refine what has been created and make it extremely crisp, respecting the design philosophy and the principles of minimalism entirely. Rather than adding a fun filter or refactoring a font, consider how to make the existing composition more cohesive with the art. If the instinct is to call a new function or draw a new shape, STOP and instead ask: "How can I make what's already here more of a piece of art?"
+**중요**: 영화/게임/책에 대한 요청이라도 접근 방식은 여전히 세련되어야 합니다. 이것이 만화적이거나 아마추어적이 아닌 예술이어야 한다는 생각을 잊지 마세요.
 
-Take a second pass. Go back to the code and refine/polish further to make this a philosophically designed masterpiece.
+미술관이나 잡지 품질의 작품을 만들기 위해 디자인 철학을 기반으로 사용하세요. 별도 요청이 없는 한 하나의 페이지, 고도로 시각적이고 디자인 중심적인 PDF 또는 PNG 출력을 만드세요. 일반적으로 반복 패턴과 완벽한 형태를 사용하세요. 추상적 철학 디자인을 과학적 바이블처럼 취급하되, 체계적 관찰의 시각 언어를 차용하세요 — 표시의 조밀한 축적, 반복 요소, 또는 인내심 있는 반복을 통해 의미를 구축하고 지속적 관찰에 보상하는 레이어드 패턴. 드문 임상적 타이포그래피와 체계적 참조 표시를 추가하여 이것이 상상의 학문에서 온 다이어그램일 수 있음을 시사하고, 보이지 않는 주제를 관찰 가능한 현상을 기록하는 데 보통 쓰이는 경의로 대하세요. 간단한 문구나 세부사항을 미묘하게 배치하고, 의도적이고 응집력 있는 제한된 컬러 팔레트를 사용하세요. 인간 경험에 대한 아이디어를 표현하기 위해 분석적 시각 언어를 사용하는 역설을 포용하세요: 결과물은 덧없는 것이 주의 깊은 관찰을 통해 연구되고, 매핑되고, 이해될 수 있음을 증명하는 유물처럼 느껴져야 합니다. 이것이 진정한 예술입니다.
 
-## MULTI-PAGE OPTION
+**맥락적 요소로서의 텍스트**: 텍스트는 항상 최소화되고 시각 우선이지만, 맥락에 따라 속삭이는 라벨이 될 수도 대담한 타이포그래피 제스처가 될 수도 있습니다. 펑크 공연장 포스터는 미니멀리스트 도자기 스튜디오 아이덴티티보다 더 크고 공격적인 타입을 가질 수 있습니다. 대부분의 경우 폰트는 가늘어야 합니다. 모든 폰트 사용은 디자인 중심적이어야 하며 시각적 소통을 우선시해야 합니다. 텍스트 크기에 관계없이 아무것도 페이지 밖으로 벗어나지 않고 겹치지 않습니다. 모든 요소는 적절한 여백과 함께 캔버스 경계 내에 포함되어야 합니다. 모든 텍스트, 그래픽, 시각적 요소가 여유 공간과 명확한 분리를 갖는지 주의 깊게 확인하세요. 이것은 전문적 실행에서 양보할 수 없습니다. **중요: 텍스트를 작성할 때 다양한 폰트를 사용하세요. `./canvas-fonts` 디렉토리를 검색하세요. 접근 방식에 관계없이 세련됨은 양보할 수 없습니다.**
 
-To create additional pages when requested, create more creative pages along the same lines as the design philosophy but distinctly different as well. Bundle those pages in the same .pdf or many .pngs. Treat the first page as just a single page in a whole coffee table book waiting to be filled. Make the next pages unique twists and memories of the original. Have them almost tell a story in a very tasteful way. Exercise full creative freedom.
+필요한 폰트를 다운로드하여 사용하세요. 타이포그래피를 실제로 예술의 일부로 만들어 창의적이 되세요 — 예술이 추상적이라면 폰트를 디지털 조판이 아닌 캔버스 위에 올리세요.
+
+경계를 넓히기 위해 철학을 안내 원칙으로 사용하면서 디자인 본능/직관을 따르세요. 궁극적인 디자인 자유와 선택을 포용하세요. 미학과 디자인을 프론티어로 밀어붙이세요.
+
+**핵심**: 사람이 만든 품질(AI가 생성한 것이 아닌)을 달성하기 위해 수없이 많은 시간이 걸린 것처럼 보이는 작품을 만드세요. 분야 최고의 전문가가 모든 디테일에 세심한 주의를 기울여 작업한 것처럼 보이게 하세요. 구성, 간격, 색상 선택, 타이포그래피 — 모든 것이 전문가 수준의 장인정신을 외치도록 하세요. 겹치는 부분이 없는지, 서식이 완벽한지, 모든 디테일이 완벽한지 다시 확인하세요. 전문성을 증명하고 부인할 수 없이 인상적이라 평가받을 수 있는 작품을 만드세요.
+
+최종 결과물을 단일 다운로드 가능한 .pdf 또는 .png 파일로, 사용된 디자인 철학을 .md 파일과 함께 출력하세요.
+
+---
+
+## 최종 단계
+
+**중요**: 사용자가 이미 "충분히 완벽하지 않아. 미술관에 전시될 수준의 걸작이어야 해."라고 말했습니다.
+
+**핵심**: 작업을 정제할 때 더 많은 그래픽을 추가하지 마세요. 대신 이미 만든 것을 정제하고 디자인 철학과 미니멀리즘 원칙을 완전히 존중하면서 극도로 선명하게 만드세요. 새 함수를 호출하거나 새 도형을 그리려는 본능이 든다면 멈추고 대신 물어보세요: "이미 있는 것을 어떻게 더 예술적으로 만들 수 있을까?"
+
+두 번째 패스를 거치세요. 코드로 돌아가서 철학적으로 디자인된 걸작이 되도록 더 정제/다듬으세요.
+
+## 다중 페이지 옵션
+
+추가 페이지가 요청된 경우 디자인 철학과 같은 맥락이되 확실히 다른 창의적 페이지를 만드세요. 해당 페이지를 같은 .pdf에 번들하거나 여러 .png로 출력하세요. 첫 페이지를 채워질 커피 테이블 북의 한 페이지로 취급하세요. 다음 페이지를 원본의 독특한 변주와 기억으로 만드세요. 매우 세련된 방식으로 거의 이야기를 전달하게 하세요. 완전한 창작의 자유를 발휘하세요.

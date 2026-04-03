@@ -1,337 +1,337 @@
 ---
 name: skill-factory
 description: >
-  Analyze session work and automatically convert reusable patterns into Claude Code skills.
-  Use when: "세션을 스킬로", "스킬 만들어", "이거 스킬로", "skill factory",
+  세션 작업을 분석하여 재사용 가능한 패턴을 자동으로 Claude Code 스킬로 변환합니다.
+  사용 시점: "세션을 스킬로", "스킬 만들어", "이거 스킬로", "skill factory",
   "이 작업 자동화해", "스킬 추출", "make this a skill", "extract skill",
   "convert to skill", "스킬 팩토리", "자동 스킬 생성".
-  Differs from skill-creator (archived) and manage-skills (drift detection):
-  this skill actively analyzes sessions, checks for duplicates, and creates skills via Agent Teams.
+  skill-creator(보관됨) 및 manage-skills(드리프트 감지)와의 차이:
+  이 스킬은 세션을 능동적으로 분석하고, 중복을 확인하고, Agent Teams를 통해 스킬을 생성합니다.
 disable-model-invocation: true
 argument-hint: "[--dry-run] [--no-team] [--target name] [--scope global|project]"
 ---
 
-# Skill Factory
+# 스킬 팩토리
 
-Automated pipeline: session analysis -> duplicate check -> skill creation.
-Requires: Python 3.8+, bash, git. Agent Teams path requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+자동화 파이프라인: 세션 분석 -> 중복 확인 -> 스킬 생성.
+필요 환경: Python 3.8+, bash, git. Agent Teams 경로는 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` 필요.
 
-| Existing Skill | Role | skill-factory Difference |
-|----------------|------|--------------------------|
-| skill-creator (archived) | Manual 6-step guide | Automated pipeline |
-| manage-skills | Drift detection (verify-* skills) | Proactive skill generation (manage-skills verifies existing; skill-factory creates new) |
-| continuous-learning | Passive pattern extraction | On-demand + team execution |
+| 기존 스킬 | 역할 | skill-factory와의 차이 |
+|-----------|------|----------------------|
+| skill-creator (보관됨) | 수동 6단계 가이드 | 자동화 파이프라인 |
+| manage-skills | 드리프트 감지 (verify-* 스킬) | 능동적 스킬 생성 (manage-skills는 기존 스킬 검증, skill-factory는 새 스킬 생성) |
+| continuous-learning | 수동적 패턴 추출 | 온디맨드 + 팀 실행 |
 
-## Parameter Parsing
+## 파라미터 파싱
 
-Parse `$ARGUMENTS` for flags:
+`$ARGUMENTS`에서 플래그를 추출합니다:
 
-| Flag | Default | Description |
-|------|---------|-------------|
-| `--dry-run` | false | Analyze and report only, no file creation |
-| `--no-team` | false | Run sequentially without Agent Teams |
-| `--target` | (auto) | Specific pattern name to extract |
-| `--scope` | global | `global` (~/. claude/skills/) or `project` (.claude/skills/) |
+| 플래그 | 기본값 | 설명 |
+|--------|--------|------|
+| `--dry-run` | false | 분석과 보고만 수행, 파일 생성 없음 |
+| `--no-team` | false | Agent Teams 없이 순차 실행 |
+| `--target` | (자동) | 추출할 특정 패턴 이름 |
+| `--scope` | global | `global` (~/.claude/skills/) 또는 `project` (.claude/skills/) |
 
-If no arguments, run full auto-detection pipeline.
+인수가 없으면 전체 자동 감지 파이프라인을 실행합니다.
 
-## Phase 1: Session Analysis
+## Phase 1: 세션 분석
 
-Collect what happened in this session:
+이 세션에서 발생한 작업을 수집합니다:
 
 ```bash
-# Uncommitted changes
+# 커밋되지 않은 변경사항
 git diff HEAD --name-only 2>/dev/null
 
-# Recent commits on current branch
+# 현재 브랜치의 최근 커밋
 git log --oneline -20 2>/dev/null
 
-# Branch diff from main
+# main에서 분기된 브랜치 diff
 git diff main...HEAD --name-only 2>/dev/null
 ```
 
-From collected changes, identify **candidate patterns** - repeatable workflows that appeared:
+수집된 변경사항에서 **후보 패턴** - 반복적으로 나타난 워크플로우를 식별합니다:
 
-1. **Multi-step sequences** - 3+ actions performed in consistent order
-2. **Tool combinations** - Specific tools used together (e.g., Grep + Read + Edit)
-3. **Domain procedures** - File types or directories accessed with specific operations
-4. **Repeated transformations** - Same type of change applied to multiple files
+1. **다단계 시퀀스** - 일관된 순서로 수행된 3개 이상의 액션
+2. **도구 조합** - 함께 사용된 특정 도구 (예: Grep + Read + Edit)
+3. **도메인 절차** - 특정 작업으로 접근한 파일 유형이나 디렉토리
+4. **반복 변환** - 여러 파일에 적용된 동일 유형의 변경
 
-If `--target` is specified, focus analysis on that named pattern only.
+`--target`이 지정되면 해당 패턴에만 분석을 집중합니다.
 
-For each candidate, produce a JSON entry (internal, not shown to user):
+각 후보에 대해 JSON 항목을 생성합니다 (내부용, 사용자에게 표시하지 않음):
 
 ```json
 {
   "name": "pattern-name",
-  "description": "What was done repeatedly",
+  "description": "반복적으로 수행된 작업 설명",
   "files": ["path/a.ts", "path/b.ts"],
   "steps": ["Step1", "Step2", "Step3"],
   "step_count": 3
 }
 ```
 
-Present findings to user:
+사용자에게 결과를 제시합니다:
 
 ```
-Session Analysis Complete
+세션 분석 완료
 
-Candidate Patterns Found: N
+발견된 후보 패턴: N개
 
-1. [pattern-name] - "Description of what was done repeatedly"
-   Files: path/a.ts, path/b.ts (N files)
-   Steps: Step1 -> Step2 -> Step3
+1. [pattern-name] - "반복적으로 수행된 작업 설명"
+   파일: path/a.ts, path/b.ts (N개 파일)
+   단계: Step1 -> Step2 -> Step3
 
-2. [pattern-name] - "Description"
+2. [pattern-name] - "설명"
    ...
 
-Which patterns should become skills? (select or 'all')
+어떤 패턴을 스킬로 만들까요? (선택 또는 'all')
 ```
 
-Wait for user selection before proceeding.
+진행 전 사용자 선택을 기다립니다.
 
-## Phase 2: Similarity Check
+## Phase 2: 유사도 검사
 
-For each selected pattern, check against existing inventory.
+선택된 각 패턴에 대해 기존 인벤토리와 비교합니다.
 
-**Step 1: Scan inventory**
+**1단계: 인벤토리 스캔**
 ```bash
 bash $HOME/.claude/skills/skill-factory/scripts/scan-inventory.sh --scope all > /tmp/sf-manifest.json
 ```
 
-**Step 2: Score similarity**
+**2단계: 유사도 점수 산출**
 ```bash
 python3 $HOME/.claude/skills/skill-factory/scripts/similarity-scorer.py \
-  --candidate "<pattern description>" \
+  --candidate "<패턴 설명>" \
   --candidate-name "<pattern-name>" \
   --manifest /tmp/sf-manifest.json \
   --top 3
 ```
 
-**Step 3: Apply decision logic** (see [references/decision-tree.md](references/decision-tree.md))
+**3단계: 결정 로직 적용** ([references/decision-tree.md](references/decision-tree.md) 참조)
 
-Present results to user:
-
-```
-Similarity Check Results
-
-Pattern: "pdf-batch-edit"
-  Top match: nano-pdf (score: 0.72) -> MERGE
-  Recommendation: Extend nano-pdf with batch operations
-
-Pattern: "config-updater"
-  Top match: init-project (score: 0.45) -> UPDATE
-  Recommendation: Add config-update subsection to init-project
-
-Pattern: "api-load-test"
-  Top match: e2e (score: 0.24) -> CREATE
-  Recommendation: Create new skill
-
-Action for each pattern? (CREATE / UPDATE / MERGE / SKIP)
-```
-
-Wait for user decision per pattern.
-
-## Phase 3: Blueprint
-
-For each CREATE/UPDATE/MERGE decision, design the skill structure.
-
-### CREATE Blueprint
-
-Select template type from [references/skill-templates.md](references/skill-templates.md):
-- **Workflow** for sequential processes
-- **Task/Tool** for operation collections
-- **Reference** for domain knowledge
-- **Verification** for automated checks
-
-Generate blueprint:
+사용자에게 결과를 제시합니다:
 
 ```
-Blueprint: api-load-test
+유사도 검사 결과
 
-Type: Workflow
-Scope: global (~/.claude/skills/)
-Structure:
+패턴: "pdf-batch-edit"
+  최고 일치: nano-pdf (점수: 0.72) -> 병합(MERGE)
+  권장: nano-pdf에 배치 작업 추가 확장
+
+패턴: "config-updater"
+  최고 일치: init-project (점수: 0.45) -> 업데이트(UPDATE)
+  권장: init-project에 config-update 하위 섹션 추가
+
+패턴: "api-load-test"
+  최고 일치: e2e (점수: 0.24) -> 생성(CREATE)
+  권장: 새 스킬 생성
+
+각 패턴에 대한 작업? (CREATE / UPDATE / MERGE / SKIP)
+```
+
+패턴별로 사용자 결정을 기다립니다.
+
+## Phase 3: 블루프린트
+
+각 CREATE/UPDATE/MERGE 결정에 대해 스킬 구조를 설계합니다.
+
+### CREATE 블루프린트
+
+[references/skill-templates.md](references/skill-templates.md)에서 템플릿 유형을 선택합니다:
+- **Workflow** - 순차 프로세스용
+- **Task/Tool** - 작업 컬렉션용
+- **Reference** - 도메인 지식용
+- **Verification** - 자동화 검사용
+
+블루프린트를 생성합니다:
+
+```
+블루프린트: api-load-test
+
+유형: Workflow
+범위: global (~/.claude/skills/)
+구조:
   api-load-test/
-  ├── SKILL.md (~200 lines)
-  │   ├── Frontmatter: name, description with triggers
-  │   ├── Overview
-  │   ├── Prerequisites
-  │   ├── Workflow (4 steps)
-  │   └── Output Format
+  ├── SKILL.md (~200줄)
+  │   ├── 프론트매터: name, 트리거 포함 description
+  │   ├── 개요
+  │   ├── 사전 요구사항
+  │   ├── 워크플로우 (4단계)
+  │   └── 출력 형식
   └── scripts/
       └── run-load-test.sh
 
-Key sections:
-  1. Target URL configuration
-  2. Load profile definition
-  3. Test execution
-  4. Results analysis
+핵심 섹션:
+  1. 대상 URL 설정
+  2. 부하 프로필 정의
+  3. 테스트 실행
+  4. 결과 분석
 
-Approve this blueprint? (y/n/edit)
+이 블루프린트를 승인하시겠습니까? (y/n/edit)
 ```
 
-Wait for user approval.
+사용자 승인을 기다립니다.
 
-### UPDATE Blueprint
+### UPDATE 블루프린트
 
-For UPDATE verdicts (score 0.3-0.6), plan a lightweight addition to the existing skill:
-
-```
-UPDATE Blueprint: config-updater -> init-project
-
-Target skill: ~/.claude/skills/init-project/SKILL.md
-Action: Add subsection "## Config Update" with steps
-Estimated diff: +20-40 lines in existing SKILL.md
-```
-
-### MERGE Blueprint
-
-For MERGE verdicts (score 0.6-0.8), plan a significant extension of the existing skill:
+UPDATE 판정(점수 0.3-0.6)의 경우, 기존 스킬에 가벼운 추가를 계획합니다:
 
 ```
-MERGE Blueprint: pdf-batch-edit -> nano-pdf
+UPDATE 블루프린트: config-updater -> init-project
 
-Target skill: ~/.claude/skills/nano-pdf/SKILL.md
-Sections to add: "## Batch Operations" (new workflow section)
-Scripts to add: scripts/batch-process.sh
-Estimated diff: +60-100 lines in SKILL.md, +1 script
+대상 스킬: ~/.claude/skills/init-project/SKILL.md
+작업: "## Config Update" 하위 섹션에 단계 추가
+예상 diff: 기존 SKILL.md에 +20-40줄
 ```
 
-## Phase 4: Execution
+### MERGE 블루프린트
 
-Two paths based on `--no-team` flag and Agent Teams availability.
+MERGE 판정(점수 0.6-0.8)의 경우, 기존 스킬의 대폭 확장을 계획합니다:
 
-Check Agent Teams availability:
+```
+MERGE 블루프린트: pdf-batch-edit -> nano-pdf
+
+대상 스킬: ~/.claude/skills/nano-pdf/SKILL.md
+추가할 섹션: "## 배치 작업" (새 워크플로우 섹션)
+추가할 스크립트: scripts/batch-process.sh
+예상 diff: SKILL.md에 +60-100줄, +1 스크립트
+```
+
+## Phase 4: 실행
+
+`--no-team` 플래그 및 Agent Teams 사용 가능 여부에 따라 두 경로로 나뉩니다.
+
+Agent Teams 사용 가능 여부 확인:
 ```bash
 [ "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}" = "1" ] && echo "teams" || echo "no-team"
 ```
-If `--no-team` is set or env var is missing/0, use Path B automatically.
+`--no-team`이 설정되었거나 환경변수가 없거나 0이면 자동으로 경로 B를 사용합니다.
 
-### Path A: Agent Teams (default)
+### 경로 A: Agent Teams (기본)
 
-Read [references/team-composition.md](references/team-composition.md) for full team details.
+전체 팀 세부사항은 [references/team-composition.md](references/team-composition.md)를 참조하세요.
 
-**Team: 3 teammates (tami, jiwon, duri)**
+**팀: 3명의 팀원 (tami, jiwon, duri)**
 
 ```
 TeamCreate -> "skill-factory-run"
 
-TaskCreate -> tami's analysis tasks (T1-T6)
-TaskCreate -> jiwon's creation tasks (T7-T12, blocked by T6)
-TaskCreate -> duri's validation tasks (T13-T18, blocked by T12)
+TaskCreate -> tami의 분석 작업 (T1-T6)
+TaskCreate -> jiwon의 생성 작업 (T7-T12, T6에 의존)
+TaskCreate -> duri의 검증 작업 (T13-T18, T12에 의존)
 
 Task -> tami (Explore, sonnet, blue)
-  "Analyze session, run scan-inventory.sh, run similarity-scorer.py, report findings"
+  "세션 분석, scan-inventory.sh 실행, similarity-scorer.py 실행, 결과 보고"
 
 Task -> jiwon (general-purpose, sonnet, green)
-  "For CREATE: read skill-templates.md, create SKILL.md + resources based on blueprint"
-  "For UPDATE/MERGE: read target skill, apply diff from blueprint, add new sections/scripts"
+  "CREATE: skill-templates.md 읽고, 블루프린트 기반으로 SKILL.md + 리소스 생성"
+  "UPDATE/MERGE: 대상 스킬 읽고, 블루프린트의 diff 적용, 새 섹션/스크립트 추가"
 
 Task -> duri (general-purpose, sonnet, yellow)
-  "Run validate-skill.sh, verify triggers, register skill"
+  "validate-skill.sh 실행, 트리거 검증, 스킬 등록"
 ```
 
-Pipeline:
-1. **tami** completes analysis -> reports to lead
-2. Lead confirms with user (Checkpoint 1-2)
-3. **jiwon** creates skill files -> reports to lead
-4. Lead confirms with user (Checkpoint 3)
-5. **duri** validates and registers -> reports to lead
-6. Lead confirms with user (Checkpoint 4)
-7. Shutdown all teammates, TeamDelete
+파이프라인:
+1. **tami** 분석 완료 -> 리더에게 보고
+2. 리더가 사용자와 확인 (체크포인트 1-2)
+3. **jiwon** 스킬 파일 생성 -> 리더에게 보고
+4. 리더가 사용자와 확인 (체크포인트 3)
+5. **duri** 검증 및 등록 -> 리더에게 보고
+6. 리더가 사용자와 확인 (체크포인트 4)
+7. 모든 팀원 종료, TeamDelete
 
-### Path B: Sequential (--no-team)
+### 경로 B: 순차 실행 (--no-team)
 
-Execute the same phases inline without Agent Teams:
+Agent Teams 없이 동일한 단계를 인라인으로 실행합니다:
 
-1. Run `scan-inventory.sh` and `similarity-scorer.py` directly
-2. **Checkpoint 1-2**: Present similarity results, ask user for CREATE/UPDATE/MERGE/SKIP per pattern
-3. Design blueprint based on template selection
-4. **Checkpoint 3**: Present blueprint, wait for user approval
-5. Create/update skill directory and files based on approved blueprint
-6. Run `validate-skill.sh` to verify
-7. **Checkpoint 4**: Present validation results, ask user to register or edit
-8. Register and log
+1. `scan-inventory.sh` 및 `similarity-scorer.py` 직접 실행
+2. **체크포인트 1-2**: 유사도 결과 제시, 패턴별 CREATE/UPDATE/MERGE/SKIP 사용자 확인
+3. 템플릿 선택 기반 블루프린트 설계
+4. **체크포인트 3**: 블루프린트 제시, 사용자 승인 대기
+5. 승인된 블루프린트 기반 스킬 디렉토리 및 파일 생성/수정
+6. `validate-skill.sh` 실행하여 검증
+7. **체크포인트 4**: 검증 결과 제시, 등록 또는 편집 사용자 확인
+8. 등록 및 로깅
 
-### --dry-run Mode
+### --dry-run 모드
 
-Stop after Phase 3 (blueprint). Print the blueprint and exit without creating files:
+Phase 3(블루프린트) 후 중단합니다. 블루프린트를 출력하고 파일 생성 없이 종료합니다:
 
 ```
-DRY RUN COMPLETE
+DRY RUN 완료
 
-Patterns analyzed: N
-Decisions: X CREATE, Y MERGE, Z SKIP
-Blueprints generated: X
+분석된 패턴: N개
+결정: X CREATE, Y MERGE, Z SKIP
+생성된 블루프린트: X개
 
-No files were created. Remove --dry-run to execute.
+파일이 생성되지 않았습니다. 실행하려면 --dry-run을 제거하세요.
 ```
 
-## Phase 5: Registration
+## Phase 5: 등록
 
-After validation passes:
+검증 통과 후:
 
-1. **Log creation** - Append to `~/.claude/skill-factory.log`:
+1. **생성 로깅** - `~/.claude/skill-factory.log`에 추가:
    ```
    [2026-02-18T14:30:00] CREATED api-load-test (global) from session patterns
    [2026-02-18T14:30:00] MERGED batch-operations into nano-pdf
    ```
 
-2. **Scope placement**:
+2. **범위 배치**:
    - `--scope global`: `~/.claude/skills/<name>/`
    - `--scope project`: `.claude/skills/<name>/`
 
-3. **Optional CLAUDE.md update**: If project-scoped, offer to add skill reference to project CLAUDE.md.
+3. **CLAUDE.md 업데이트 (선택)**: 프로젝트 범위인 경우, 프로젝트 CLAUDE.md에 스킬 참조 추가를 제안합니다.
 
-## Output Format
+## 출력 형식
 
-Final report after all patterns are processed:
+모든 패턴 처리 후 최종 보고서:
 
 ```
-Skill Factory Report
+스킬 팩토리 보고서
 
-Session: <branch-name or "main">
-Patterns found: N
-Patterns processed: M
+세션: <branch-name 또는 "main">
+발견된 패턴: N개
+처리된 패턴: M개
 
-Results:
-  CREATED: api-load-test (global) - 4 files, 180 lines
-  MERGED:  batch-ops into nano-pdf - 2 sections added
-  SKIPPED: data-transform (0.85 match with data-research)
+결과:
+  생성됨: api-load-test (global) - 4개 파일, 180줄
+  병합됨: batch-ops -> nano-pdf - 2개 섹션 추가
+  건너뜀: data-transform (data-research와 0.85 일치)
 
-Files created/modified:
+생성/수정된 파일:
   ~/.claude/skills/api-load-test/SKILL.md
   ~/.claude/skills/api-load-test/scripts/run-load-test.sh
-  ~/.claude/skills/nano-pdf/SKILL.md (updated)
+  ~/.claude/skills/nano-pdf/SKILL.md (수정됨)
 
-Validation: ALL PASS
-Log: ~/.claude/skill-factory.log
+검증: 전체 통과
+로그: ~/.claude/skill-factory.log
 
-Next steps:
-  Test the new skill: /api-load-test
-  Review: cat ~/.claude/skills/api-load-test/SKILL.md
+다음 단계:
+  새 스킬 테스트: /api-load-test
+  리뷰: cat ~/.claude/skills/api-load-test/SKILL.md
 ```
 
-## Error Handling
+## 에러 처리
 
-| Situation | Action |
-|-----------|--------|
-| No git history | Analyze only staged/unstaged changes |
-| No patterns found | "No reusable patterns detected. Try after a more complex session." |
-| scan-inventory.sh fails | Fall back to manual inventory (glob SKILL.md files) |
-| similarity-scorer.py fails | Skip similarity check, default to CREATE |
-| Agent Teams unavailable | Auto-fallback to `--no-team` mode |
-| validate-skill.sh fails | Show errors, let user fix or cancel |
-| User cancels at checkpoint | Abort gracefully, no partial files left |
+| 상황 | 조치 |
+|------|------|
+| git 이력 없음 | staged/unstaged 변경사항만 분석 |
+| 패턴 미발견 | "재사용 가능한 패턴이 감지되지 않았습니다. 더 복잡한 세션 후에 시도해보세요." |
+| scan-inventory.sh 실패 | 수동 인벤토리로 폴백 (SKILL.md 파일 glob) |
+| similarity-scorer.py 실패 | 유사도 검사 생략, CREATE로 기본 설정 |
+| Agent Teams 사용 불가 | `--no-team` 모드로 자동 폴백 |
+| validate-skill.sh 실패 | 오류 표시, 사용자가 수정 또는 취소 |
+| 사용자가 체크포인트에서 취소 | 정상 중단, 부분 파일 남기지 않음 |
 
-## Related Files
+## 관련 파일
 
-| File | Purpose | When to Read |
-|------|---------|--------------|
-| [scripts/scan-inventory.sh](scripts/scan-inventory.sh) | Scan all skills/commands/agents to JSON | Phase 2 - always |
-| [scripts/similarity-scorer.py](scripts/similarity-scorer.py) | 4-dim similarity scoring | Phase 2 - per pattern |
-| [scripts/validate-skill.sh](scripts/validate-skill.sh) | Validate created skill structure | Phase 5 - after creation |
-| [references/decision-tree.md](references/decision-tree.md) | CREATE/UPDATE/MERGE/SKIP logic | Phase 2 - for decisions |
-| [references/team-composition.md](references/team-composition.md) | tami/jiwon/duri team setup | Phase 4 - Agent Teams path |
-| [references/skill-templates.md](references/skill-templates.md) | Skill type templates | Phase 3 - blueprint design |
+| 파일 | 용도 | 읽는 시점 |
+|------|------|----------|
+| [scripts/scan-inventory.sh](scripts/scan-inventory.sh) | 모든 스킬/커맨드/에이전트를 JSON으로 스캔 | Phase 2 - 항상 |
+| [scripts/similarity-scorer.py](scripts/similarity-scorer.py) | 4차원 유사도 점수 산출 | Phase 2 - 패턴별 |
+| [scripts/validate-skill.sh](scripts/validate-skill.sh) | 생성된 스킬 구조 검증 | Phase 5 - 생성 후 |
+| [references/decision-tree.md](references/decision-tree.md) | CREATE/UPDATE/MERGE/SKIP 로직 | Phase 2 - 결정 시 |
+| [references/team-composition.md](references/team-composition.md) | tami/jiwon/duri 팀 구성 | Phase 4 - Agent Teams 경로 |
+| [references/skill-templates.md](references/skill-templates.md) | 스킬 유형 템플릿 | Phase 3 - 블루프린트 설계 |

@@ -1,6 +1,6 @@
 ---
 name: flutter-init
-description: Use when user wants to create a new Flutter project (Todo/Habit/Note/Expense/Custom domain) with Clean Architecture, Riverpod 3.0, Drift, and modern Flutter stack
+description: Clean Architecture, Riverpod 3.0, Drift 및 최신 Flutter 스택으로 새 Flutter 프로젝트(Todo/Habit/Note/Expense/Custom 도메인)를 생성하려 할 때 사용합니다
 ---
 
 # Flutter Init Skill

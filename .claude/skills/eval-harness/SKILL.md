@@ -1,25 +1,25 @@
 ---
 name: eval-harness
-description: Formal evaluation framework for Claude Code sessions implementing eval-driven development (EDD) principles
+description: 평가 주도 개발(EDD) 원칙을 구현하는 Claude Code 세션용 공식 평가 프레임워크
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
-# Eval Harness Skill
+# 평가 하네스 스킬
 
-A formal evaluation framework for Claude Code sessions, implementing eval-driven development (EDD) principles.
+평가 주도 개발(EDD) 원칙을 구현하는 Claude Code 세션용 공식 평가 프레임워크입니다.
 
-## Philosophy
+## 철학
 
-Eval-Driven Development treats evals as the "unit tests of AI development":
-- Define expected behavior BEFORE implementation
-- Run evals continuously during development
-- Track regressions with each change
-- Use pass@k metrics for reliability measurement
+평가 주도 개발은 평가를 "AI 개발의 단위 테스트"로 취급합니다:
+- 구현 전에 기대 동작을 정의
+- 개발 중 지속적으로 평가 실행
+- 각 변경마다 회귀를 추적
+- 신뢰성 측정을 위해 pass@k 지표 사용
 
-## Eval Types
+## 평가 유형
 
-### Capability Evals
-Test if Claude can do something it couldn't before:
+### 기능 평가
+Claude가 이전에 할 수 없었던 것을 할 수 있는지 테스트합니다:
 ```markdown
 [CAPABILITY EVAL: feature-name]
 Task: Description of what Claude should accomplish
@@ -30,8 +30,8 @@ Success Criteria:
 Expected Output: Description of expected result
 ```
 
-### Regression Evals
-Ensure changes don't break existing functionality:
+### 회귀 평가
+변경 사항이 기존 기능을 손상시키지 않는지 확인합니다:
 ```markdown
 [REGRESSION EVAL: feature-name]
 Baseline: SHA or checkpoint name
@@ -42,10 +42,10 @@ Tests:
 Result: X/Y passed (previously Y/Y)
 ```
 
-## Grader Types
+## 채점기 유형
 
-### 1. Code-Based Grader
-Deterministic checks using code:
+### 1. 코드 기반 채점기
+코드를 사용한 결정적 검사:
 ```bash
 # Check if file contains expected pattern
 grep -q "export function handleAuth" src/auth.ts && echo "PASS" || echo "FAIL"
@@ -57,8 +57,8 @@ npm test -- --testPathPattern="auth" && echo "PASS" || echo "FAIL"
 npm run build && echo "PASS" || echo "FAIL"
 ```
 
-### 2. Model-Based Grader
-Use Claude to evaluate open-ended outputs:
+### 2. 모델 기반 채점기
+Claude를 사용하여 개방형 출력을 평가합니다:
 ```markdown
 [MODEL GRADER PROMPT]
 Evaluate the following code change:
@@ -71,8 +71,8 @@ Score: 1-5 (1=poor, 5=excellent)
 Reasoning: [explanation]
 ```
 
-### 3. Human Grader
-Flag for manual review:
+### 3. 사람 채점기
+수동 리뷰를 위해 플래그합니다:
 ```markdown
 [HUMAN REVIEW REQUIRED]
 Change: Description of what changed
@@ -80,7 +80,7 @@ Reason: Why human review is needed
 Risk Level: LOW/MEDIUM/HIGH
 ```
 
-## Metrics
+## 지표
 
 ### pass@k
 "At least one success in k attempts"
@@ -94,18 +94,18 @@ Risk Level: LOW/MEDIUM/HIGH
 - pass^3: 3 consecutive successes
 - Use for critical paths
 
-## Eval Workflow
+## 평가 워크플로우
 
-### 1. Define (Before Coding)
+### 1. 정의 (코딩 전)
 ```markdown
 ## EVAL DEFINITION: feature-xyz
 
-### Capability Evals
+### 기능 평가
 1. Can create new user account
 2. Can validate email format
 3. Can hash password securely
 
-### Regression Evals
+### 회귀 평가
 1. Existing login still works
 2. Session management unchanged
 3. Logout flow intact
@@ -115,10 +115,10 @@ Risk Level: LOW/MEDIUM/HIGH
 - pass^3 = 100% for regression evals
 ```
 
-### 2. Implement
-Write code to pass the defined evals.
+### 2. 구현
+정의된 평가를 통과하는 코드를 작성합니다.
 
-### 3. Evaluate
+### 3. 평가
 ```bash
 # Run capability evals
 [Run each capability eval, record PASS/FAIL]
@@ -129,7 +129,7 @@ npm test -- --testPathPattern="existing"
 # Generate report
 ```
 
-### 4. Report
+### 4. 보고
 ```markdown
 EVAL REPORT: feature-xyz
 ========================
@@ -153,29 +153,29 @@ Metrics:
 Status: READY FOR REVIEW
 ```
 
-## Integration Patterns
+## 통합 패턴
 
-### Pre-Implementation
+### 구현 전
 ```
 /eval define feature-name
 ```
-Creates eval definition file at `.claude/evals/feature-name.md`
+평가 정의 파일 생성 위치: `.claude/evals/feature-name.md`
 
-### During Implementation
+### 구현 중
 ```
 /eval check feature-name
 ```
-Runs current evals and reports status
+현재 평가를 실행하고 상태를 보고합니다
 
-### Post-Implementation
+### 구현 후
 ```
 /eval report feature-name
 ```
-Generates full eval report
+전체 평가 보고서를 생성합니다
 
-## Eval Storage
+## 평가 저장
 
-Store evals in project:
+프로젝트에 평가를 저장합니다:
 ```
 .claude/
   evals/
@@ -184,17 +184,17 @@ Store evals in project:
     baseline.json       # Regression baselines
 ```
 
-## Best Practices
+## 모범 사례
 
-1. **Define evals BEFORE coding** - Forces clear thinking about success criteria
-2. **Run evals frequently** - Catch regressions early
-3. **Track pass@k over time** - Monitor reliability trends
-4. **Use code graders when possible** - Deterministic > probabilistic
-5. **Human review for security** - Never fully automate security checks
-6. **Keep evals fast** - Slow evals don't get run
-7. **Version evals with code** - Evals are first-class artifacts
+1. **코딩 전에 평가를 정의** - 성공 기준에 대한 명확한 사고를 강제
+2. **평가를 자주 실행** - 회귀를 조기에 발견
+3. **시간에 따른 pass@k 추적** - 신뢰성 추세 모니터링
+4. **가능하면 코드 채점기 사용** - 결정적 > 확률적
+5. **보안은 사람이 리뷰** - 보안 검사를 완전히 자동화하지 않음
+6. **평가를 빠르게 유지** - 느린 평가는 실행되지 않음
+7. **코드와 함께 평가를 버전 관리** - 평가는 일급 산출물
 
-## Example: Adding Authentication
+## 예제: 인증 추가
 
 ```markdown
 ## EVAL: add-authentication

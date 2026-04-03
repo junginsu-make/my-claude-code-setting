@@ -155,7 +155,41 @@ ALIASES
     fi
 done
 
-# ─── 9. GitHub auth check ───
+# ─── 9. Install Plugins ───
+echo ""
+echo "▸ 플러그인 설치..."
+if command -v claude >/dev/null 2>&1; then
+    PLUGINS=(
+        "frontend-design@claude-plugins-official"
+        "superpowers@claude-plugins-official"
+        "context7@claude-plugins-official"
+        "code-review@claude-plugins-official"
+        "playwright@claude-plugins-official"
+        "feature-dev@claude-plugins-official"
+        "typescript-lsp@claude-plugins-official"
+        "claude-md-management@claude-plugins-official"
+        "commit-commands@claude-plugins-official"
+        "skill-creator@claude-plugins-official"
+        "claude-code-setup@claude-plugins-official"
+        "playground@claude-plugins-official"
+    )
+    for plugin in "${PLUGINS[@]}"; do
+        name="${plugin%%@*}"
+        claude plugin install "$plugin" 2>/dev/null && \
+            echo -e "  ${GREEN}✓${NC} $name" || \
+            echo -e "  ${YELLOW}⚠${NC} $name (이미 설치됨 또는 실패)"
+    done
+
+    # Codex plugin (external marketplace)
+    claude plugin install "codex@openai-codex" --marketplace-source "github:openai/codex-plugin-cc" 2>/dev/null && \
+        echo -e "  ${GREEN}✓${NC} codex (OpenAI)" || \
+        echo -e "  ${YELLOW}⚠${NC} codex (이미 설치됨 또는 실패)"
+else
+    echo -e "${YELLOW}  ⚠ Claude CLI 미설치. 플러그인 수동 설치 필요${NC}"
+    echo "    claude plugin install superpowers@claude-plugins-official"
+fi
+
+# ─── 10. GitHub auth check ───
 echo ""
 echo "▸ GitHub 인증 확인..."
 if command -v gh >/dev/null 2>&1; then
@@ -174,8 +208,8 @@ cat << DONE
   ${GREEN}╔══════════════════════════════════════════════════════╗
   ║           설치 완료!                                  ║
   ╠══════════════════════════════════════════════════════╣
-  ║  11 agents · 41 commands · 39 skills · 15 hooks     ║
-  ║  Agent Teams 활성화 · context7 MCP                   ║
+  ║  11 agents · 41 commands · 40 skills · 18 hooks     ║
+  ║  13 plugins · Agent Teams · context7 MCP            ║
   ╚══════════════════════════════════════════════════════╝${NC}
 
   시작하기:

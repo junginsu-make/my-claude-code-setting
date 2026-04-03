@@ -5,7 +5,7 @@ description: 프로젝트 빌드 시스템 자동 감지 및 실행 스킬
 last_updated: 2026-01-31
 ---
 
-# Build System Skill
+# 빌드 시스템 스킬
 
 ## 개요
 

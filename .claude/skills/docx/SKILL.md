@@ -1,32 +1,32 @@
 ---
 name: docx
-description: "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation."
+description: "사용자가 Word 문서(.docx 파일)를 생성, 읽기, 편집 또는 조작하려 할 때 이 스킬을 사용합니다. 트리거: 'Word 문서', '.docx' 언급, 목차/제목/페이지 번호/레터헤드 등 서식이 있는 전문 문서 제작 요청. .docx 파일에서 콘텐츠 추출/재구성, 이미지 삽입/교체, 찾기-바꾸기, 변경 추적/코멘트 작업, 콘텐츠를 정돈된 Word 문서로 변환할 때도 사용합니다. '보고서', '메모', '서신', '템플릿' 등을 Word/.docx 파일로 요청하면 이 스킬을 사용하세요. PDF, 스프레드시트, Google Docs, 문서 생성과 무관한 일반 코딩 작업에는 사용하지 마세요."
 license: Proprietary. LICENSE.txt has complete terms
 ---
 
-# DOCX creation, editing, and analysis
+# DOCX 생성, 편집, 분석
 
-## Overview
+## 개요
 
-A .docx file is a ZIP archive containing XML files.
+.docx 파일은 XML 파일을 포함하는 ZIP 아카이브입니다.
 
-## Quick Reference
+## 빠른 참조
 
-| Task | Approach |
+| 작업 | 접근법 |
 |------|----------|
-| Read/analyze content | `pandoc` or unpack for raw XML |
-| Create new document | Use `docx-js` - see Creating New Documents below |
-| Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
+| 내용 읽기/분석 | `pandoc` 또는 raw XML 추출 |
+| 새 문서 생성 | `docx-js` 사용 - 아래 새 문서 생성 참조 |
+| 기존 문서 편집 | 추출 → XML 편집 → 재패킹 - 아래 기존 문서 편집 참조 |
 
-### Converting .doc to .docx
+### .doc을 .docx로 변환
 
-Legacy `.doc` files must be converted before editing:
+레거시 `.doc` 파일은 편집 전에 변환해야 합니다:
 
 ```bash
 python scripts/office/soffice.py --headless --convert-to docx document.doc
 ```
 
-### Reading Content
+### 내용 읽기
 
 ```bash
 # Text extraction with tracked changes
@@ -36,16 +36,16 @@ pandoc --track-changes=all document.docx -o output.md
 python scripts/office/unpack.py document.docx unpacked/
 ```
 
-### Converting to Images
+### 이미지로 변환
 
 ```bash
 python scripts/office/soffice.py --headless --convert-to pdf document.docx
 pdftoppm -jpeg -r 150 document.pdf page
 ```
 
-### Accepting Tracked Changes
+### 변경 추적 수락
 
-To produce a clean document with all tracked changes accepted (requires LibreOffice):
+모든 변경 추적이 수락된 깨끗한 문서를 생성합니다 (LibreOffice 필요):
 
 ```bash
 python scripts/accept_changes.py input.docx output.docx
@@ -53,11 +53,11 @@ python scripts/accept_changes.py input.docx output.docx
 
 ---
 
-## Creating New Documents
+## 새 문서 생성
 
-Generate .docx files with JavaScript, then validate. Install: `npm install -g docx`
+JavaScript로 .docx 파일을 생성한 후 검증합니다. 설치: `npm install -g docx`
 
-### Setup
+### 설정
 ```javascript
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, ImageRun,
         Header, Footer, AlignmentType, PageOrientation, LevelFormat, ExternalHyperlink,
@@ -71,13 +71,13 @@ const doc = new Document({ sections: [{ children: [/* content */] }] });
 Packer.toBuffer(doc).then(buffer => fs.writeFileSync("doc.docx", buffer));
 ```
 
-### Validation
-After creating the file, validate it. If validation fails, unpack, fix the XML, and repack.
+### 검증
+파일 생성 후 검증합니다. 검증 실패 시 추출하여 XML을 수정하고 재패킹합니다.
 ```bash
 python scripts/office/validate.py doc.docx
 ```
 
-### Page Size
+### 페이지 크기
 
 ```javascript
 // CRITICAL: docx-js defaults to A4, not US Letter
@@ -113,9 +113,9 @@ size: {
 // Content width = 15840 - left margin - right margin (uses the long edge)
 ```
 
-### Styles (Override Built-in Headings)
+### 스타일 (내장 제목 오버라이드)
 
-Use Arial as the default font (universally supported). Keep titles black for readability.
+Arial을 기본 폰트로 사용합니다 (범용 지원). 가독성을 위해 제목은 검정색으로 유지합니다.
 
 ```javascript
 const doc = new Document({
@@ -139,7 +139,7 @@ const doc = new Document({
 });
 ```
 
-### Lists (NEVER use unicode bullets)
+### 목록 (유니코드 불릿 사용 금지)
 
 ```javascript
 // ❌ WRONG - never manually insert bullet characters
@@ -173,7 +173,7 @@ const doc = new Document({
 // Different reference = restarts (1,2,3 then 1,2,3)
 ```
 
-### Tables
+### 표
 
 **CRITICAL: Tables need dual widths** - set both `columnWidths` on the table AND `width` on each cell. Without both, tables render incorrectly on some platforms.
 
@@ -220,7 +220,7 @@ columnWidths: [7000, 2360]  // Must sum to table width
 - Cell `margins` are internal padding - they reduce content area, not add to cell width
 - For full-width tables: use content width (page width minus left and right margins)
 
-### Images
+### 이미지
 
 ```javascript
 // CRITICAL: type parameter is REQUIRED
@@ -234,7 +234,7 @@ new Paragraph({
 })
 ```
 
-### Page Breaks
+### 페이지 나누기
 
 ```javascript
 // CRITICAL: PageBreak must be inside a Paragraph
@@ -244,7 +244,7 @@ new Paragraph({ children: [new PageBreak()] })
 new Paragraph({ pageBreakBefore: true, children: [new TextRun("New page")] })
 ```
 
-### Hyperlinks
+### 하이퍼링크
 
 ```javascript
 // External link
@@ -267,7 +267,7 @@ new Paragraph({ children: [new InternalHyperlink({
 })]})
 ```
 
-### Footnotes
+### 각주
 
 ```javascript
 const doc = new Document({
@@ -288,7 +288,7 @@ const doc = new Document({
 });
 ```
 
-### Tab Stops
+### 탭 정지
 
 ```javascript
 // Right-align text on same line (e.g., date opposite a title)
@@ -316,7 +316,7 @@ new Paragraph({
 })
 ```
 
-### Multi-Column Layouts
+### 다단 레이아웃
 
 ```javascript
 // Equal-width columns
@@ -347,16 +347,16 @@ sections: [{
 }]
 ```
 
-Force a column break with a new section using `type: SectionType.NEXT_COLUMN`.
+`type: SectionType.NEXT_COLUMN`을 사용하여 새 섹션으로 단 나누기를 강제합니다.
 
-### Table of Contents
+### 목차
 
 ```javascript
 // CRITICAL: Headings must use HeadingLevel ONLY - no custom styles
 new TableOfContents("Table of Contents", { hyperlink: true, headingStyleRange: "1-3" })
 ```
 
-### Headers/Footers
+### 머리글/바닥글
 
 ```javascript
 sections: [{
@@ -375,7 +375,7 @@ sections: [{
 }]
 ```
 
-### Critical Rules for docx-js
+### docx-js 핵심 규칙
 
 - **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) for US documents
 - **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`
@@ -395,19 +395,19 @@ sections: [{
 
 ---
 
-## Editing Existing Documents
+## 기존 문서 편집
 
-**Follow all 3 steps in order.**
+**3단계를 순서대로 따르세요.**
 
-### Step 1: Unpack
+### 단계 1: 추출
 ```bash
 python scripts/office/unpack.py document.docx unpacked/
 ```
-Extracts XML, pretty-prints, merges adjacent runs, and converts smart quotes to XML entities (`&#x201C;` etc.) so they survive editing. Use `--merge-runs false` to skip run merging.
+XML을 추출하고, 정렬 출력하고, 인접한 run을 병합하고, 스마트 인용부호를 XML 엔티티(`&#x201C;` 등)로 변환하여 편집 시에도 유지되게 합니다. run 병합을 건너뛰려면 `--merge-runs false`를 사용합니다.
 
-### Step 2: Edit XML
+### 단계 2: XML 편집
 
-Edit files in `unpacked/word/`. See XML Reference below for patterns.
+`unpacked/word/`의 파일을 편집합니다. 패턴은 아래 XML 참조를 확인하세요.
 
 **Use "Claude" as the author** for tracked changes and comments, unless the user explicitly requests use of a different name.
 
@@ -433,11 +433,11 @@ python scripts/comment.py unpacked/ 0 "Text" --author "Custom Author"  # custom 
 ```
 Then add markers to document.xml (see Comments in XML Reference).
 
-### Step 3: Pack
+### 단계 3: 패킹
 ```bash
 python scripts/office/pack.py unpacked/ output.docx --original document.docx
 ```
-Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate false` to skip.
+자동 복구로 검증하고, XML을 압축하고, DOCX를 생성합니다. 건너뛰려면 `--validate false`를 사용합니다.
 
 **Auto-repair will fix:**
 - `durableId` >= 0x7FFFFFFF (regenerates valid ID)
@@ -446,22 +446,22 @@ Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate fal
 **Auto-repair won't fix:**
 - Malformed XML, invalid element nesting, missing relationships, schema violations
 
-### Common Pitfalls
+### 흔한 실수
 
 - **Replace entire `<w:r>` elements**: When adding tracked changes, replace the whole `<w:r>...</w:r>` block with `<w:del>...<w:ins>...` as siblings. Don't inject tracked change tags inside a run.
 - **Preserve `<w:rPr>` formatting**: Copy the original run's `<w:rPr>` block into your tracked change runs to maintain bold, font size, etc.
 
 ---
 
-## XML Reference
+## XML 참조
 
-### Schema Compliance
+### 스키마 준수
 
 - **Element order in `<w:pPr>`**: `<w:pStyle>`, `<w:numPr>`, `<w:spacing>`, `<w:ind>`, `<w:jc>`, `<w:rPr>` last
 - **Whitespace**: Add `xml:space="preserve"` to `<w:t>` with leading/trailing spaces
 - **RSIDs**: Must be 8-digit hex (e.g., `00AB1234`)
 
-### Tracked Changes
+### 변경 추적
 
 **Insertion:**
 ```xml
@@ -527,7 +527,7 @@ Without the `<w:del/>` in `<w:pPr><w:rPr>`, accepting changes leaves an empty pa
 </w:ins>
 ```
 
-### Comments
+### 코멘트
 
 After running `comment.py` (see Step 2), add markers to document.xml. For replies, use `--parent` flag and nest markers inside the parent's.
 
@@ -553,7 +553,7 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 <w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="1"/></w:r>
 ```
 
-### Images
+### 이미지
 
 1. Add image file to `word/media/`
 2. Add relationship to `word/_rels/document.xml.rels`:
@@ -582,7 +582,7 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 
 ---
 
-## Dependencies
+## 의존성
 
 - **pandoc**: Text extraction
 - **docx**: `npm install -g docx` (new documents)

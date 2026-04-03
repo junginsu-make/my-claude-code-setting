@@ -444,6 +444,38 @@ rubocop
 - 테스트 태스크 → test-specialist
 ```
 
+### 태스크 완료 후 파이프라인 (claude-forge 연동)
+
+각 태스크의 TDD 사이클 + Quality Gate 통과 후, 자동으로 후반 파이프라인을 실행합니다:
+
+```
+TDD 완료 + Quality Gate PASS
+    ↓
+/code-review (보안 + 품질 검사)
+    ↓ CRITICAL/HIGH 이슈 없음
+/handoff-verify --effort high (fresh context 검증)
+    ↓ PASS
+/commit-push-pr (커밋 + PR 생성)
+    ↓
+/sync-docs (문서 동기화)
+    ↓
+/next-task (다음 태스크 추천)
+```
+
+**자동 실행 모드**: 태스크 단위로 `/auto`를 사용하면 위 전체가 자동 실행됩니다:
+```bash
+/auto "T1.1: 기능명" --mode feature
+```
+
+**수동 실행 모드**: 단계별 확인이 필요한 경우:
+```bash
+/code-review          # 코드 검사
+/handoff-verify       # 빌드/테스트 검증
+/commit-push-pr       # 커밋 + PR
+/sync-docs            # 문서 동기화
+/next-task            # 다음 태스크
+```
+
 ---
 
 ## Development History 관리

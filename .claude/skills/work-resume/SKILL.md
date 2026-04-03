@@ -3,7 +3,7 @@ name: work-resume
 description: 세션 종료 시 작업 진행상황을 자동 저장하고, 새 세션 시작 시 자동 복원합니다. /save-progress 또는 /resume-work 명령으로도 사용 가능합니다.
 ---
 
-# Work Resume System
+# 작업 이어하기 시스템
 
 세션 간 작업 연속성을 보장하는 시스템입니다.
 
