@@ -152,36 +152,73 @@ pnpm-lock.yaml → pnpm / yarn.lock → yarn / bun.lockb → bun / 기본 → np
 2. mcp__context7__query-docs → 필요한 컴포넌트별 최신 사용법 조회
 ```
 
-#### 컴포넌트 매핑표
+#### shadcn/ui 공식 컴포넌트 전체 목록 (58개)
 
-디자인에서 필요한 UI 요소를 shadcn/ui 컴포넌트에 매핑한다:
+디자인에서 필요한 UI 요소를 아래 목록에서 먼저 찾는다.
+**이 목록에 있으면 반드시 shadcn/ui를 사용한다. 직접 구현 금지.**
 
-| UI 요소 | shadcn/ui | 설치 명령 |
-|---------|-----------|----------|
-| 버튼 | Button | `npx shadcn@latest add button` |
-| 입력 | Input, Textarea | `npx shadcn@latest add input textarea` |
-| 선택 | Select, Combobox | `npx shadcn@latest add select` |
-| 폼 | Form (react-hook-form + zod) | `npx shadcn@latest add form` |
-| 테이블 | Table, DataTable | `npx shadcn@latest add table` |
-| 카드 | Card | `npx shadcn@latest add card` |
-| 모달 | Dialog, AlertDialog | `npx shadcn@latest add dialog alert-dialog` |
-| 시트 (사이드 패널) | Sheet | `npx shadcn@latest add sheet` |
-| 내비게이션 | NavigationMenu, Breadcrumb | `npx shadcn@latest add navigation-menu breadcrumb` |
-| 탭 | Tabs | `npx shadcn@latest add tabs` |
-| 알림 | Toast (Sonner) | `npx shadcn@latest add sonner` |
-| 드롭다운 | DropdownMenu | `npx shadcn@latest add dropdown-menu` |
-| 날짜 | Calendar, DatePicker | `npx shadcn@latest add calendar` |
-| 차트 | Chart (Recharts) | `npx shadcn@latest add chart` |
-| 사이드바 | Sidebar | `npx shadcn@latest add sidebar` |
-| 아코디언 | Accordion | `npx shadcn@latest add accordion` |
-| 진행률 | Progress, Skeleton | `npx shadcn@latest add progress skeleton` |
-| 툴팁 | Tooltip, Popover | `npx shadcn@latest add tooltip popover` |
-| 검색/명령 | Command | `npx shadcn@latest add command` |
-| 캐러셀 | Carousel | `npx shadcn@latest add carousel` |
-| 토글 | Toggle, Switch | `npx shadcn@latest add toggle switch` |
-| 배지 | Badge | `npx shadcn@latest add badge` |
-| 아바타 | Avatar | `npx shadcn@latest add avatar` |
-| 구분선 | Separator | `npx shadcn@latest add separator` |
+| 카테고리 | 컴포넌트 | 설명 |
+|----------|----------|------|
+| **레이아웃** | Aspect Ratio | 비율 유지 컨테이너 |
+| | Card | 헤더/콘텐츠/푸터 카드 |
+| | Collapsible | 접기/펼치기 패널 |
+| | Resizable | 크기 조절 가능한 패널 |
+| | Scroll Area | 커스텀 스크롤바 |
+| | Separator | 구분선 |
+| | Sidebar | 사이드바 (테마/커스터마이징 내장) |
+| **내비게이션** | Breadcrumb | 경로 탐색 |
+| | Menubar | 데스크톱 메뉴바 |
+| | Navigation Menu | 사이트 내비게이션 |
+| | Pagination | 페이지네이션 |
+| | Tabs | 탭 패널 |
+| **버튼/액션** | Button | 버튼 (variant: default/destructive/outline/secondary/ghost/link) |
+| | Button Group | 버튼 그룹 컨테이너 |
+| | Toggle | 토글 버튼 (on/off) |
+| | Toggle Group | 토글 버튼 그룹 |
+| **입력/폼** | Checkbox | 체크박스 |
+| | Combobox | 자동완성 입력 |
+| | Date Picker | 날짜 선택기 |
+| | Field | 라벨+입력+도움말 조합 |
+| | Input | 텍스트 입력 |
+| | Input Group | 입력 + 애드온/버튼 조합 |
+| | Input OTP | 일회용 비밀번호 입력 |
+| | Label | 접근성 라벨 |
+| | Native Select | 네이티브 HTML select |
+| | Radio Group | 라디오 버튼 그룹 |
+| | Select | 드롭다운 선택 |
+| | Slider | 범위 슬라이더 |
+| | Switch | 스위치 토글 |
+| | Textarea | 멀티라인 입력 |
+| **데이터 표시** | Avatar | 사용자 아바타 (이미지+폴백) |
+| | Badge | 배지/태그 |
+| | Calendar | 달력 |
+| | Carousel | 캐러셀 (Embla 기반) |
+| | Chart | 차트 (Recharts 기반) |
+| | Data Table | 데이터 테이블 (TanStack Table 기반) |
+| | Empty | 빈 상태 표시 |
+| | Item | 미디어+제목+설명+액션 조합 |
+| | Kbd | 키보드 단축키 표시 |
+| | Progress | 진행률 바 |
+| | Skeleton | 로딩 플레이스홀더 |
+| | Spinner | 로딩 인디케이터 |
+| | Table | 반응형 테이블 |
+| | Typography | 제목/본문/목록 등 타이포그래피 |
+| **오버레이/팝업** | Alert Dialog | 확인 다이얼로그 |
+| | Command | 검색/명령 메뉴 (⌘K) |
+| | Context Menu | 우클릭 메뉴 |
+| | Dialog | 모달 다이얼로그 |
+| | Drawer | 서랍형 패널 |
+| | Dropdown Menu | 드롭다운 메뉴 |
+| | Hover Card | 호버 미리보기 카드 |
+| | Popover | 팝오버 |
+| | Sheet | 사이드 시트 패널 |
+| | Tooltip | 툴팁 |
+| **피드백** | Alert | 알림 배너 |
+| | Sonner | 토스트 알림 (권장) |
+| | Toast | 토스트 알림 (레거시) |
+| **유틸** | Direction | RTL/LTR 방향 설정 |
+
+> 이 목록에 없는 UI가 필요하면 [shadcn/ui Registry Directory](https://ui.shadcn.com/docs/directory)에서 커뮤니티 컴포넌트를 먼저 확인한다.
 
 #### shadcn/ui 최우선 원칙 (CRITICAL)
 
