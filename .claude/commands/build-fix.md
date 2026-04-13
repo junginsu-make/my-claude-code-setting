@@ -1,5 +1,5 @@
 ---
-description: Incrementally fix TypeScript and build errors one at a time
+description: TypeScript 및 빌드 에러를 하나씩 순차적으로 수정
 ---
 
 # Build and Fix

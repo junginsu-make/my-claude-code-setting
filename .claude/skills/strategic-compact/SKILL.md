@@ -1,6 +1,6 @@
 ---
 name: strategic-compact
-description: Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary auto-compaction.
+description: 작업 단계별 논리적 시점에 수동 컨텍스트 압축을 제안. 임의의 자동 압축 대신 맥락을 보존하며 압축.
 ---
 
 # Strategic Compact Skill

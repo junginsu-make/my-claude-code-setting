@@ -1,5 +1,5 @@
 ---
-description: Generate and run end-to-end tests with Playwright. Creates test journeys, runs tests, captures screenshots/videos/traces, and uploads artifacts.
+description: Playwright로 E2E 테스트 생성 및 실행. 테스트 시나리오 작성, 스크린샷/비디오/트레이스 캡처.
 ---
 
 # E2E Command

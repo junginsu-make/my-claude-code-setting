@@ -1,6 +1,6 @@
 ---
 name: extract-errors
-description: Use when adding new error messages to React, or seeing "unknown error code" warnings.
+description: React에 새 에러 메시지 추가 시 또는 "unknown error code" 경고 발생 시 사용.
 ---
 
 # Extract Error Codes

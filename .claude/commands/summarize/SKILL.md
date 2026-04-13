@@ -1,6 +1,6 @@
 ---
 name: summarize
-description: Summarize or extract text/transcripts from URLs, podcasts, and local files (great fallback for “transcribe this YouTube/video”).
+description: URL, 팟캐스트, 로컬 파일에서 텍스트/트랜스크립트 요약 및 추출 (유튜브/비디오 트랜스크립트 대안으로 유용).
 homepage: https://summarize.sh
 metadata: {"openclaw":{"emoji":"🧾","requires":{"bins":["summarize"]},"install":[{"id":"brew","kind":"brew","formula":"steipete/tap/summarize","bins":["summarize"],"label":"Install summarize (brew)"}]}}
 ---

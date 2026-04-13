@@ -1,6 +1,6 @@
 ---
 name: debugging-strategies
-description: Master systematic debugging techniques, profiling tools, and root cause analysis to efficiently track down bugs across any codebase or technology stack. Use when investigating bugs, performance issues, or unexpected behavior.
+description: 체계적인 디버깅 기법, 프로파일링 도구, 근본 원인 분석을 활용한 버그 추적. 버그 조사, 성능 이슈, 예상치 못한 동작 발생 시 사용.
 ---
 
 # Debugging Strategies

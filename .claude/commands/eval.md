@@ -1,5 +1,5 @@
 ---
-description: Manage eval-driven development workflow (define, check, report, list)
+description: 평가 주도 개발 워크플로우 관리 (정의, 확인, 보고, 목록)
 ---
 
 # Eval Command

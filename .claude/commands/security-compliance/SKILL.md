@@ -1,6 +1,6 @@
 ---
 name: security-compliance
-description: Guides security professionals in implementing defense-in-depth security architectures, achieving compliance with industry frameworks (SOC2, ISO27001, GDPR, HIPAA), conducting threat modeling and risk assessments, managing security operations and incident response, and embedding security throughout the SDLC.
+description: 심층 방어 보안 아키텍처 구현, 컴플라이언스 프레임워크 준수 (SOC2, ISO27001, GDPR, HIPAA), 위협 모델링, 보안 운영 및 인시던트 대응, SDLC 전반 보안 내재화 가이드.
 ---
 
 # Security & Compliance Expert

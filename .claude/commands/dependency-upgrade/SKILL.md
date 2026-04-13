@@ -1,6 +1,6 @@
 ---
 name: dependency-upgrade
-description: Manage major dependency version upgrades with compatibility analysis, staged rollout, and comprehensive testing. Use when upgrading framework versions, updating major dependencies, or managing breaking changes in libraries.
+description: 주요 의존성 버전 업그레이드 관리. 호환성 분석, 단계적 롤아웃, 종합 테스트. 프레임워크 업그레이드나 브레이킹 체인지 대응 시 사용.
 ---
 
 # Dependency Upgrade

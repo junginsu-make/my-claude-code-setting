@@ -1,6 +1,6 @@
 ---
 name: stride-analysis-patterns
-description: Apply STRIDE methodology to systematically identify threats. Use when analyzing system security, conducting threat modeling sessions, or creating security documentation.
+description: STRIDE 방법론으로 체계적 위협 식별. 시스템 보안 분석, 위협 모델링 세션, 보안 문서 작성 시 사용.
 ---
 
 # STRIDE Analysis Patterns

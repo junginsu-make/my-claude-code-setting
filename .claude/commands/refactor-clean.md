@@ -1,5 +1,5 @@
 ---
-description: Safely identify and remove dead code with test verification
+description: 사용하지 않는 코드를 안전하게 식별하고 테스트 검증 후 제거
 ---
 
 # Refactor Clean

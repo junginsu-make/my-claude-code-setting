@@ -1,9 +1,9 @@
 ---
 name: cache-components
 description: |
-  Expert guidance for Next.js Cache Components and Partial Prerendering (PPR).
+  Next.js 캐시 컴포넌트 및 부분 사전 렌더링(PPR) 전문 가이드.
 
-  **PROACTIVE ACTIVATION**: Use this skill automatically when working in Next.js projects that have `cacheComponents: true` in their next.config.ts/next.config.js. When this config is detected, proactively apply Cache Components patterns and best practices to all React Server Component implementations.
+  **자동 활성화**: next.config.ts/next.config.js에 `cacheComponents: true`가 있는 Next.js 프로젝트에서 자동으로 이 스킬을 적용. 모든 React 서버 컴포넌트에 캐시 패턴과 모범 사례를 적용합니다.
 
   **DETECTION**: At the start of a session in a Next.js project, check for `cacheComponents: true` in next.config. If enabled, this skill's patterns should guide all component authoring, data fetching, and caching decisions.
 
