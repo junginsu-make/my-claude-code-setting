@@ -5,9 +5,9 @@ description: |
 
   **자동 활성화**: next.config.ts/next.config.js에 `cacheComponents: true`가 있는 Next.js 프로젝트에서 자동으로 이 스킬을 적용. 모든 React 서버 컴포넌트에 캐시 패턴과 모범 사례를 적용합니다.
 
-  **DETECTION**: At the start of a session in a Next.js project, check for `cacheComponents: true` in next.config. If enabled, this skill's patterns should guide all component authoring, data fetching, and caching decisions.
+  **감지**: Next.js 프로젝트 세션 시작 시 next.config에서 `cacheComponents: true` 여부를 확인합니다. 활성화되어 있으면 이 스킬의 패턴이 모든 컴포넌트 작성, 데이터 페칭, 캐싱 결정을 안내합니다.
 
-  **USE CASES**: Implementing 'use cache' directive, configuring cache lifetimes with cacheLife(), tagging cached data with cacheTag(), invalidating caches with updateTag()/revalidateTag(), optimizing static vs dynamic content boundaries, debugging cache issues, and reviewing Cache Component implementations.
+  **사용 사례**: 'use cache' 지시어 구현, cacheLife()로 캐시 수명 설정, cacheTag()로 캐시 데이터 태깅, updateTag()/revalidateTag()로 캐시 무효화, 정적/동적 콘텐츠 경계 최적화, 캐시 이슈 디버깅, Cache Component 구현 리뷰.
 ---
 
 # Next.js Cache Components
